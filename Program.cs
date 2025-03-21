@@ -4,7 +4,7 @@ class Chatbot
 {
     static void Main()
     {
-        Console.WriteLine("Hello World!");
+        Console.WriteLine("Hello World! It's juste Alexandra checking if it's gonna update");
 
         Console.WriteLine("SecuBot: Hey there! Welcome to SecuBot, your friendly guide to cybersecurity awareness.");
         Console.WriteLine("In today’s digital world, staying safe online is more important than ever, and that’s exactly what I’m here to help with!");
