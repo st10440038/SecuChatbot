@@ -4,8 +4,6 @@ class Chatbot
 {
     static void Main()
     {
-        Console.WriteLine("Hello World! It's juste Alexandra checking if it's gonna update");
-
         Console.WriteLine("SecuBot: Hey there! Welcome to SecuBot, your friendly guide to cybersecurity awareness.");
         Console.WriteLine("In today’s digital world, staying safe online is more important than ever, and that’s exactly what I’m here to help with!");
         Console.WriteLine("Whether you need tips on protecting your accounts, spotting scams, or just learning more about cybersecurity, I’ve got you covered.");
@@ -14,7 +12,7 @@ class Chatbot
         Console.Write("Let’s make this chat more personal ! What’s your name ? ----------> ");
         string userName = Console.ReadLine();
         Console.WriteLine();
-
+        
         while (string.IsNullOrEmpty(userName) || !userName.All(Char.IsLetter))
         {
             Console.Write("SecuBot: Oops, please enter a valid name. ----------> ");
@@ -27,8 +25,6 @@ class Chatbot
         Console.WriteLine();
         Console.WriteLine("Do you have any burning questions, or should I hit you with a cool security fact to get started?");
         Console.WriteLine();
-        Console.Write("----------> ");
-        string userInput = Console.ReadLine().ToLower();
 
         Dictionary<string, List<string>> keywordDictionary = new Dictionary<string, List<string>>()
         {
@@ -62,25 +58,31 @@ class Chatbot
             { "encryption", "Encryption secures data by converting it into a secret code. This protects messages and files from being read by unauthorized users. Want to learn how encryption is used in online security?" }
         };
 
-        string matchedCategory = keywordDictionary
-            .FirstOrDefault(entry => entry.Value.Any(keyword => userInput.Contains(keyword)))
-            .Key;
-
-
-        if (!string.IsNullOrEmpty(matchedCategory) && responses.ContainsKey(matchedCategory))
+        while (true)
         {
-            Console.WriteLine($"\nSecuBot: {responses[matchedCategory]}");
-            Console.WriteLine("Do you have any other questions ?");
-        }
-        else
-        {
-            while (!responses.ContainsKey(matchedCategory))
+            Console.Write("----------> ");
+            string userInput = Console.ReadLine().ToLower();
+
+            if (userInput == "no" || userInput == "no more questions" || userInput == "exit" || userInput == "bye")
             {
-                Console.WriteLine("\nSecuBot: Hmm, I’m not sure I understood. Could you rephrase that or be more specific?");
-                Console.Write("----------> ");
-                userInput = Console.ReadLine().ToLower();
+                Console.WriteLine("SecuBot: It was great chatting with you! Stay safe online. Goodbye!");
+                break;
             }
 
+            string matchedCategory = keywordDictionary
+                .FirstOrDefault(entry => entry.Value.Any(keyword => userInput.Contains(keyword)))
+                .Key;
+
+            if (!string.IsNullOrEmpty(matchedCategory) && responses.ContainsKey(matchedCategory))
+            {
+                Console.WriteLine($"\nSecuBot: {responses[matchedCategory]}");
+            }
+            else
+            {
+                Console.WriteLine("\nSecuBot: Hmm, I’m not sure I understood. Could you rephrase or ask something else?");
+            }
+
+            Console.WriteLine("\nDo you have any other questions?");
         }
 
     }
