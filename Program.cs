@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 class Chatbot
 {
@@ -10,9 +12,9 @@ class Chatbot
         Console.WriteLine();
 
         Console.Write("Let’s make this chat more personal ! What’s your name ? ----------> ");
-        string userName = Console.ReadLine();
+        string? userName = Console.ReadLine();
         Console.WriteLine();
-        
+
         while (string.IsNullOrEmpty(userName) || !userName.All(Char.IsLetter))
         {
             Console.Write("SecuBot: Oops, please enter a valid name. ----------> ");
@@ -28,6 +30,8 @@ class Chatbot
 
         Dictionary<string, List<string>> keywordDictionary = new Dictionary<string, List<string>>()
         {
+            { "how_are_you", new List<string> { "how are you", "how's it going", "how's your day", "how do you feel", "what's up", "how are you doing" } },
+            { "what_can_i_ask", new List<string> { "what can I ask you about", "what can I talk to you about", "what topics can I ask you", "what are you here to help with", "what can I learn" } },
             { "purpose", new List<string> { "purpose", "about", "what is", "who are you", "your role", "you", "explain yourself", "describe", "tell me about", "what do you do" } },
             { "cybersecurity", new List<string> { "cybersecurity", "hacking", "protection", "safety", "online security", "digital security", "secure", "threats", "dangers", "online threats", "why cybersecurity" } },
             { "passwords", new List<string> { "password", "secure password", "strong password", "password tips", "password security", "password management", "how to make a strong password", "best password", "weak password", "password best practices" } },
@@ -41,10 +45,11 @@ class Chatbot
             { "encryption", new List<string> { "encryption", "encrypted", "how does encryption work", "secure communication", "data encryption", "message encryption", "what is encryption", "cryptography" } }
         };
 
-
-        // Responses dictionary with detailed answers
+        
         Dictionary<string, string> responses = new Dictionary<string, string>()
         {
+            { "how_are_you", "I’m doing great, thanks for asking! How about you?" },
+            { "what_can_i_ask", "You can ask me about cybersecurity topics like phishing, passwords, encryption, online threats, safe browsing, and more. I’m here to help you stay safe online!" },
             { "purpose", "I’m SecuBot, your friendly cybersecurity assistant! My job is to help you stay safe online by giving advice on security best practices." },
             { "cybersecurity", "Cybersecurity is about protecting your devices, data, and online identity from threats like hackers, scams, and malware. It’s crucial in today’s digital world." },
             { "passwords", "A strong password should have at least 12 characters, including uppercase, lowercase, numbers, and special symbols. Avoid using personal info like your name or birthdate." },
@@ -61,8 +66,13 @@ class Chatbot
         while (true)
         {
             Console.Write("----------> ");
-            string userInput = Console.ReadLine().ToLower();
+            string? userInput = Console.ReadLine()?.ToLower();
 
+            if (userInput == null)
+            {
+                Console.WriteLine("SecuBot: It seems like there was an issue with your input. Please try again.");
+                continue;
+            }
             if (userInput == "no" || userInput == "no more questions" || userInput == "exit" || userInput == "bye")
             {
                 Console.WriteLine("SecuBot: It was great chatting with you! Stay safe online. Goodbye!");
@@ -84,6 +94,6 @@ class Chatbot
 
             Console.WriteLine("\nDo you have any other questions?");
         }
-
     }
 }
+
