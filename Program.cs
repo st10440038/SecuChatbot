@@ -1,66 +1,62 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 class Chatbot
 {
     static void Main()
     {
-        Console.WriteLine("SecuBot: Hey there! Welcome to SecuBot, your friendly guide to cybersecurity awareness.");
-        Console.WriteLine("In today’s digital world, staying safe online is more important than ever, and that’s exactly what I’m here to help with!");
-        Console.WriteLine("Whether you need tips on protecting your accounts, spotting scams, or just learning more about cybersecurity, I’ve got you covered.");
+        Console.WriteLine("SecuBot: Hello, I’m SecuBot, here to assist you with all things cybersecurity.");
+        Console.WriteLine("In today’s connected world, online security is more crucial than ever, and I’m here to guide you through it.");
+        Console.WriteLine("Whether you're seeking advice on securing accounts, recognizing online threats, or understanding best practices, I’m here to help.");
         Console.WriteLine();
 
-        Console.Write("Let’s make this chat more personal ! What’s your name ? ----------> ");
+        Console.Write("To get started, may I have your name? --------> ");
         string? userName = Console.ReadLine();
         Console.WriteLine();
 
         while (string.IsNullOrEmpty(userName) || !userName.All(Char.IsLetter))
         {
-            Console.Write("SecuBot: Oops, please enter a valid name. ----------> ");
+            Console.Write("SecuBot: Could you please provide your name again? --------> ");
             userName = Console.ReadLine();
             Console.WriteLine();
         }
 
-        Console.WriteLine($"Nice to meet you, {userName}! I’m glad you’re here.");
-        Console.WriteLine("Now that we’re officially on a first-name basis, let’s dive into the world of cybersecurity!");
-        Console.WriteLine();
-        Console.WriteLine("Do you have any burning questions, or should I hit you with a cool security fact to get started?");
+        Console.WriteLine($"It's a pleasure to meet you, {userName}! Let's dive into some valuable cybersecurity insights.");
+        Console.WriteLine("Feel free to ask me anything, or if you’d prefer, I can begin by offering a helpful security tip.");
         Console.WriteLine();
 
         Dictionary<string, List<string>> keywordDictionary = new Dictionary<string, List<string>>()
         {
-            { "how_are_you", new List<string> { "how are you", "how's it going", "how's your day", "how do you feel", "what's up", "how are you doing" } },
-            { "what_can_i_ask", new List<string> { "what can I ask you about", "what can I talk to you about", "what topics can I ask you", "what are you here to help with", "what can I learn" } },
-            { "purpose", new List<string> { "purpose", "about", "what is", "who are you", "your role", "you", "explain yourself", "describe", "tell me about", "what do you do" } },
-            { "cybersecurity", new List<string> { "cybersecurity", "hacking", "protection", "safety", "online security", "digital security", "secure", "threats", "dangers", "online threats", "why cybersecurity" } },
-            { "passwords", new List<string> { "password", "secure password", "strong password", "password tips", "password security", "password management", "how to make a strong password", "best password", "weak password", "password best practices" } },
-            { "phishing", new List<string> { "phishing", "email scam", "fake email", "fraud", "scam", "phishing attack", "how to avoid phishing", "phishing example", "how to spot phishing", "phishing signs" } },
-            { "2fa", new List<string> { "2fa", "two factor authentication", "multi factor authentication", "MFA", "login security", "secure login", "authentication", "how to enable 2fa", "what is 2fa" } },
-            { "social_engineering", new List<string> { "social engineering", "manipulation", "psychological attack", "trick", "fake identity", "scammer", "social engineering examples", "human hacking", "deception" } },
-            { "malware", new List<string> { "malware", "virus", "trojan", "spyware", "ransomware", "adware", "types of malware", "infected computer", "computer virus", "malware protection" } },
-            { "safe_browsing", new List<string> { "safe browsing", "secure browsing", "dangerous websites", "how to browse safely", "internet safety", "protect my data", "safe internet use", "how to stay safe online", "public wifi", "vpn", "safe downloads", "secure websites", "private browsing", "safe surfing", "browser security", "avoid malware websites" } },
-            { "data_privacy", new List<string> { "data privacy", "personal information", "protect my data", "online privacy", "how to protect my data", "digital privacy", "privacy settings", "data breach", "identity theft", "private data", "how to keep my data safe" } },
-            { "secure_messaging", new List<string> { "secure messaging", "private chat", "encrypted messages", "safe texting", "best messaging app", "how to send secure messages", "whatsapp security", "telegram security" } },
-            { "encryption", new List<string> { "encryption", "encrypted", "how does encryption work", "secure communication", "data encryption", "message encryption", "what is encryption", "cryptography" } }
+            { "how_are_you", new List<string> { "how are you", "how's it going", "how are you doing", "how’s everything", "how do you feel" } },
+            { "what_can_i_ask", new List<string> { "what can I ask you", "what topics can I discuss", "what are you here to help with", "what can I learn from you" } },
+            { "purpose", new List<string> { "who are you", "what do you do", "what’s your purpose", "explain yourself", "tell me about your role" } },
+            { "cybersecurity", new List<string> { "cybersecurity", "digital security", "online security", "cyber threats", "protecting my data" } },
+            { "passwords", new List<string> { "password", "strong password", "password tips", "how to make a secure password", "password management" } },
+            { "phishing", new List<string> { "phishing", "scam email", "fraudulent email", "phishing attacks", "how to recognize phishing" } },
+            { "2fa", new List<string> { "2fa", "two-factor authentication", "MFA", "two-step verification", "how to set up 2fa" } },
+            { "social_engineering", new List<string> { "social engineering", "human hacking", "manipulation", "fraudulent requests", "spotting social engineering" } },
+            { "malware", new List<string> { "malware", "virus", "trojan", "spyware", "ransomware", "malicious software" } },
+            { "safe_browsing", new List<string> { "safe browsing", "secure websites", "dangerous sites", "how to browse safely", "internet security" } },
+            { "data_privacy", new List<string> { "data privacy", "personal data", "protecting personal information", "online privacy" } },
+            { "secure_messaging", new List<string> { "secure messaging", "encrypted messages", "private messaging", "secure communication" } },
+            { "encryption", new List<string> { "encryption", "encrypted data", "data encryption", "how encryption works", "secure communications" } }
         };
 
-        
         Dictionary<string, string> responses = new Dictionary<string, string>()
         {
-            { "how_are_you", "I’m doing great, thanks for asking! How about you?" },
-            { "what_can_i_ask", "You can ask me about cybersecurity topics like phishing, passwords, encryption, online threats, safe browsing, and more. I’m here to help you stay safe online!" },
-            { "purpose", "I’m SecuBot, your friendly cybersecurity assistant! My job is to help you stay safe online by giving advice on security best practices." },
-            { "cybersecurity", "Cybersecurity is about protecting your devices, data, and online identity from threats like hackers, scams, and malware. It’s crucial in today’s digital world." },
-            { "passwords", "A strong password should have at least 12 characters, including uppercase, lowercase, numbers, and special symbols. Avoid using personal info like your name or birthdate." },
-            { "phishing", "Phishing attacks trick you into giving away personal information through fake emails, messages, or websites. Always check the sender’s email, avoid clicking unknown links, and verify requests before entering credentials." },
-            { "2fa", "Two-Factor Authentication (2FA) adds an extra layer of security by requiring a second form of verification (like a code sent to your phone) when logging in. Always enable 2FA on important accounts!" },
-            { "social_engineering", "Social engineering is when hackers manipulate people into revealing sensitive information. Be cautious of unexpected messages or phone calls asking for passwords or financial info!" },
-            { "malware", "Malware is malicious software designed to harm or steal data. Types include viruses, ransomware, and spyware. Protect yourself by keeping your software updated and avoiding suspicious downloads." },
-            { "safe_browsing", "To browse safely, always check for HTTPS in website URLs, avoid downloading unknown files, and use a VPN when on public Wi-Fi." },
-            { "data_privacy", "Your personal data is valuable. Use strong passwords, adjust privacy settings on social media, and be cautious about sharing sensitive info online." },
-            { "secure_messaging", "For private conversations, use encrypted messaging apps like Signal or Telegram. Avoid sharing personal info over unencrypted messages!" },
-            { "encryption", "Encryption secures data by converting it into a secret code. This protects messages and files from being read by unauthorized users. Want to learn how encryption is used in online security?" }
+            { "how_are_you", "I’m doing well, thank you for asking! How about you? How is everything on your end?" },
+            { "what_can_i_ask", "Feel free to ask me about various cybersecurity topics—everything from account protection to identifying phishing scams. I’m here to provide insights to help you stay safe online." },
+            { "purpose", "I’m SecuBot, designed to assist you with understanding and improving your cybersecurity. I can answer questions on various topics like online safety, passwords, encryption, and more." },
+            { "cybersecurity", "Cybersecurity refers to the practices and technologies used to protect digital information, devices, and systems from unauthorized access, attacks, and damage. It’s crucial to stay vigilant and informed in today’s digital age." },
+            { "passwords", "Creating a strong password is key to protecting your accounts. Use a combination of upper and lowercase letters, numbers, and symbols. Aim for at least 12 characters, and avoid easily guessable information." },
+            { "phishing", "Phishing attacks involve scammers pretending to be legitimate organizations to steal your personal information. Always check the sender’s email and avoid clicking on suspicious links or attachments." },
+            { "2fa", "Two-factor authentication (2FA) is an additional layer of security that requires something you know (like your password) and something you have (like a code sent to your phone). It’s one of the simplest and most effective ways to secure your accounts." },
+            { "social_engineering", "Social engineering involves manipulating people into divulging confidential information. Be cautious of unsolicited messages or requests, especially if they seem too good to be true." },
+            { "malware", "Malware is software designed to harm or exploit any device or network. It can include viruses, spyware, and ransomware. Protect your devices by keeping your software up to date and avoiding suspicious downloads." },
+            { "safe_browsing", "To browse safely, always check for 'HTTPS' in website URLs, avoid clicking on dubious links, and use a VPN when connecting to public Wi-Fi. Ensure that your browser and security software are up to date." },
+            { "data_privacy", "Protecting your personal data is vital. Review your social media privacy settings, avoid sharing too much personal information online, and be cautious about what you disclose to websites and apps." },
+            { "secure_messaging", "For secure communication, consider using encrypted messaging platforms like Signal or WhatsApp. These services ensure that your messages are private and protected from unauthorized access." },
+            { "encryption", "Encryption is the process of converting data into a code to prevent unauthorized access. It’s widely used to secure sensitive information during transmission, ensuring that only authorized parties can decrypt and read it." }
         };
 
         while (true)
@@ -70,12 +66,13 @@ class Chatbot
 
             if (userInput == null)
             {
-                Console.WriteLine("SecuBot: It seems like there was an issue with your input. Please try again.");
+                Console.WriteLine("SecuBot: Sorry, I didn’t quite catch that. Please try again.");
                 continue;
             }
-            if (userInput == "no" || userInput == "no more questions" || userInput == "exit" || userInput == "bye")
+
+            if (userInput == "no" || userInput == "exit" || userInput == "bye" || userInput == "quit" || userInput == "no more questions")
             {
-                Console.WriteLine("SecuBot: It was great chatting with you! Stay safe online. Goodbye!");
+                Console.WriteLine("SecuBot: It was a pleasure assisting you today. Stay safe online, and don’t hesitate to reach out again. Goodbye!");
                 break;
             }
 
@@ -89,11 +86,10 @@ class Chatbot
             }
             else
             {
-                Console.WriteLine("\nSecuBot: Hmm, I’m not sure I understood. Could you rephrase or ask something else?");
+                Console.WriteLine("\nSecuBot: I’m afraid I didn’t understand that. Please feel free to ask about any other cybersecurity topic.");
             }
 
-            Console.WriteLine("\nDo you have any other questions?");
+            Console.WriteLine("\nWould you like more information on any specific topic, or do you have any further questions?");
         }
     }
 }
-
