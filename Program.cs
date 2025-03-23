@@ -8,10 +8,10 @@ class Chatbot
     {
         try
         {
-            // Set console size for better display (adjust as needed)
+            
             Console.SetWindowSize(100, 30);
 
-            // Option 1: ASCII Art as a string
+            
             string asciiArt = @"
                                                                                        
                                                                            
@@ -45,29 +45,40 @@ class Chatbot
                                                                    
             ";
 
-            Console.ForegroundColor = ConsoleColor.Red; // Set text color
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine(asciiArt);
-            Console.ResetColor(); // Reset to default color
+            Console.ResetColor();
 
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("*********************************************************************");
 
-            Console.WriteLine("SecuBot: Hello, I’m SecuBot, here to assist you with all things cybersecurity.");
-            Console.WriteLine("In today’s connected world, online security is more crucial than ever, and I’m here to guide you through it.");
-            Console.WriteLine("Whether you're seeking advice on securing accounts, recognizing online threats, or understanding best practices, I’m here to help.");
+            
+            Console.ForegroundColor = ConsoleColor.Cyan; 
+
+            TypeText("SecuBot: Hello, I’m SecuBot, here to assist you with all things cybersecurity.");
+            TypeText("In today’s connected world, online security is more crucial than ever, and I’m here to guide you through it.");
+            TypeText("Whether you're seeking advice on securing accounts, recognizing online threats, or understanding best practices, I’m here to help.");
             Console.WriteLine();
+            
 
             Console.Write("To get started, may I have your name? --------> ");
+            Console.ForegroundColor = ConsoleColor.Green;
             string? userName = Console.ReadLine();
             Console.WriteLine();
 
             while (string.IsNullOrEmpty(userName) || !userName.All(Char.IsLetter))
             {
-                Console.Write("SecuBot: Could you please provide your name again? --------> ");
+                Console.ForegroundColor = ConsoleColor.Red;
+                TypeText("SecuBot: Could you please provide your name again? --------> ");
+
+                Console.ForegroundColor = ConsoleColor.Green;
                 userName = Console.ReadLine();
                 Console.WriteLine();
             }
 
-            Console.WriteLine($"It's a pleasure to meet you, {userName}! Let's dive into some valuable cybersecurity insights.");
-            Console.WriteLine("Feel free to ask me anything, or if you’d prefer, I can begin by offering a helpful security tip.");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            TypeText($"It's a pleasure to meet you, {userName}! Let's dive into some valuable cybersecurity insights.");
+            TypeText("Feel free to ask me anything, or if you’d prefer, I can begin by offering a helpful security tip.");
             Console.WriteLine();
 
             Dictionary<string, List<string>> keywordDictionary = new Dictionary<string, List<string>>()
@@ -107,17 +118,21 @@ class Chatbot
             while (true)
             {
                 Console.Write("----------> ");
+                Console.ForegroundColor = ConsoleColor.Green;
                 string? userInput = Console.ReadLine()?.ToLower();
 
                 if (userInput == null)
                 {
-                    Console.WriteLine("SecuBot: Oops! It seems like I missed that. Could you please try again?");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    TypeText("SecuBot: Oops! It seems like I missed that. Could you please try again?");
                     continue;
                 }
 
                 if (userInput == "no" || userInput == "exit" || userInput == "bye" || userInput == "quit" || userInput == "no more questions")
                 {
-                    Console.WriteLine("SecuBot: It was a pleasure assisting you today. Stay safe online, and don’t hesitate to reach out again. Goodbye!");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine();
+                    TypeText("SecuBot: It was a pleasure assisting you today. Stay safe online, and don’t hesitate to reach out again. Goodbye!");
                     break;
                 }
 
@@ -127,20 +142,34 @@ class Chatbot
 
                 if (!string.IsNullOrEmpty(matchedCategory) && responses.ContainsKey(matchedCategory))
                 {
-                    Console.WriteLine($"\nSecuBot: {responses[matchedCategory]}");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    TypeText($"\nSecuBot: {responses[matchedCategory]}");
                 }
                 else
                 {
-                    Console.WriteLine("\nSecuBot: Hmm, I didn't quite catch that. Feel free to ask me anything related to online security, and I’ll be happy to help!");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    TypeText("\nSecuBot: Hmm, I didn't quite catch that. Feel free to ask me anything related to online security, and I’ll be happy to help!");
                 }
 
-                Console.WriteLine("\nWould you like more information on any specific topic, or do you have any further questions?");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                TypeText("\nWould you like more information on any specific topic, or do you have any further questions?");
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"SecuBot: Oh no, something went wrong! I encountered an issue: {ex.Message}. Please try again later, and we’ll get back on track.");
+            Console.ForegroundColor = ConsoleColor.Red;
+            TypeText($"SecuBot: Oh no, something went wrong! I encountered an issue: {ex.Message}. Please try again later, and we’ll get back on track.");
         }
+    }
+
+    static void TypeText(string text, int delay = 17)
+    {
+        foreach (char c in text)
+        {
+            Console.Write(c);
+            Thread.Sleep(delay);
+        }
+        Console.WriteLine();
     }
 }
 
