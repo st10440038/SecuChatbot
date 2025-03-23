@@ -47,7 +47,8 @@ class Chatbot
             Console.WriteLine(asciiArt);
             Console.ResetColor();
 
-            
+            Console.WriteLine("First modification: line 110 ");
+            Console.WriteLine("Second modification: line 50 and 51 ");
             
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
