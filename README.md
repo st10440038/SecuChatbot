@@ -42,7 +42,7 @@ Some examples of things you can ask:
 When chatting with SecuBot, ask questions about cybersecurity and the bot will respond based on pre-programmed responses.
 
 
-## Exiting the Chatbot
+## Exiting the Chatbot with the console
 To exit the chatbot, the user only has to type any of the following:
 
 - "exit"
