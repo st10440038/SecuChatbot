@@ -8,9 +8,7 @@ class Chatbot
     {
         try
         {
-            
             Console.SetWindowSize(100, 30);
-
             
             string asciiArt = @"
                                                                                        
@@ -49,18 +47,25 @@ class Chatbot
             Console.WriteLine(asciiArt);
             Console.ResetColor();
 
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("*********************************************************************");
+            
+            
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+            Console.WriteLine("**********************************************************************");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            TypeText("Welcome to the Cybersecurity Chatbot!");
+            TypeText("Type 'exit' or 'bye' anytime to end the conversation.");
+            Console.WriteLine();
+            Console.WriteLine("**********************************************************************");
 
             
             Console.ForegroundColor = ConsoleColor.Cyan; 
-
             TypeText("SecuBot: Hello, I’m SecuBot, here to assist you with all things cybersecurity.");
             TypeText("In today’s connected world, online security is more crucial than ever, and I’m here to guide you through it.");
             TypeText("Whether you're seeking advice on securing accounts, recognizing online threats, or understanding best practices, I’m here to help.");
             Console.WriteLine();
             
-
             Console.Write("To get started, may I have your name? --------> ");
             Console.ForegroundColor = ConsoleColor.Green;
             string? userName = Console.ReadLine();
@@ -81,6 +86,8 @@ class Chatbot
             TypeText("Feel free to ask me anything, or if you’d prefer, I can begin by offering a helpful security tip.");
             Console.WriteLine();
 
+
+            
             Dictionary<string, List<string>> keywordDictionary = new Dictionary<string, List<string>>()
             {
                 { "how_are_you", new List<string> { "how are you", "how's it going", "how are you doing", "how’s everything", "how do you feel" } },
@@ -115,6 +122,7 @@ class Chatbot
                 { "encryption", "Encryption is the process of scrambling your data so that only authorized people can read it. It’s like sending a locked box where only the recipient has the key. This technology protects everything from your emails to online banking transactions, ensuring your sensitive information stays private." }
             };
 
+            
             while (true)
             {
                 Console.Write("----------> ");
@@ -161,6 +169,7 @@ class Chatbot
             TypeText($"SecuBot: Oh no, something went wrong! I encountered an issue: {ex.Message}. Please try again later, and we’ll get back on track.");
         }
     }
+
 
     static void TypeText(string text, int delay = 17)
     {
