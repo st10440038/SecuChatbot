@@ -47,8 +47,10 @@ class Chatbot
             Console.WriteLine(asciiArt);
             Console.ResetColor();
 
-            Console.WriteLine("First modification: line 110 ");
-            Console.WriteLine("Second modification: line 50 and 51 ");
+            Console.WriteLine("Ci Workflow verification:");
+            Console.WriteLine("First modification: line 113");
+            Console.WriteLine("Second modification: line 51 and 52 ");
+            Console.WriteLine("Third modification: line 50 ane 53 ");
             
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
