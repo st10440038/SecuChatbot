@@ -107,7 +107,7 @@ class Chatbot
 
             Dictionary<string, string> responses = new Dictionary<string, string>()
             {
-                { "how_are_you", "I’m doing great, thanks for asking! How about you? How’s everything going on your end? I'm here to chat whenever you’re ready." },
+                { "how_are_you", $"I’m doing great, thanks for asking {userName}! How about you? How’s everything going on your end? I'm here to chat whenever you’re ready." },
                 { "what_can_i_ask", "Oh, there's so much you can ask! I can provide tips on protecting your passwords, spotting phishing attacks, setting up two-factor authentication, and much more. Whatever’s on your mind regarding cybersecurity, feel free to ask!" },
                 { "purpose", "I’m SecuBot, your cybersecurity guide. My goal is to help you stay safe online by answering your questions and providing tips on securing your data, devices, and accounts. Whether you're a beginner or already tech-savvy, I’ve got your back!" },
                 { "cybersecurity", "Cybersecurity is all about protecting your digital life—your data, your devices, and your identity. It involves practices, tools, and technologies that keep your information safe from unauthorized access, damage, or attacks. In simple terms, it's making sure you're safe online." },
