@@ -1,4 +1,4 @@
-name: C# Chatbot CI
+name: CI Workflow
 
 on:
   push:
