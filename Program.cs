@@ -8,6 +8,48 @@ class Chatbot
     {
         try
         {
+            // Set console size for better display (adjust as needed)
+            Console.SetWindowSize(100, 30);
+
+            // Option 1: ASCII Art as a string
+            string asciiArt = @"
+                                                                                       
+                                                                           
+                           *%%%%%%%%%%%%%%%%%%%%,                          
+                      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                     
+                  %%%%%%%%%%%%%%(          #%%%%%%%%%%%%%%                 
+               %%%%%%%%%%.                        *%%%%%%%%%%              
+            %%%%%%%%%     %&&&&&&&&&&&                 %%%%%%%%%           
+          %%%%%%%%.      &&&&&&&&&&& &&              .%%%%%%%%%%%%         
+         %%%%%%%        &&& *&&&&&&&   &           %%%%%%%%%%%%%%%%        
+       %%%%%%%          &    &&#%&&    %        .%%%%%%%%    .%%%%%%%      
+      %%%%%%%          & &&&&&&&&&&&&&& %     %%%%%%%%%        %%%%%%%     
+     %%%%%%%            & &&&&&&&&&&&& &   ,%%%%%%%%            %%%%%%#    
+     %%%%%%               & &&&&&&&& %   %%%%%%%%%               %%%%%%    
+    %%%%%%,                  &&&&&&   .%%%%%%%%                  (%%%%%%   
+    %%%%%%           %&&&&&&/ (&&/  %%%%%%%#%                     %%%%%%   
+    %%%%%%        &&&&&&&%&%&%&& .%##%%%%# #&%                    %%%%%%   
+    %%%%%%      #&&&&&&&%%&&&# %###%%##%                          %%%%%%   
+    %%%%%%,     &&&&&&&&&&& .%%%%%%%% (&&&&&&&&&&&&&&&&&         #%%%%%%   
+     %%%%%%     %&&&&&&&& %%%%%%%%% & &&&&&&&&&&&&&&&&&&         %%%%%%    
+     %%%%%%%           .%%%%%%%%      &&&&&&&&&&&&&&&&&&        %%%%%%#    
+      %%%%%%%        %%%%%%%%%        &&&&&&&&&&&&&&&&&&       %%%%%%%     
+       %%%%%%%    .%%%%%%%%           &&&&&&&&&&&&&&&&&&     *%%%%%%#      
+         %%%%%%%%%%%%%%%%                   &&&&&&          %%%%%%%        
+          %%%%%%%%%%%%                                   #%%%%%%%#         
+            %%%%%%%%%.                                /%%%%%%%%#           
+               %%%%%%%%%%(                        #%%%%%%%%%%              
+                  %%%%%%%%%%%%%%%.        ,%%%%%%%%%%%%%%%                 
+                      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                     
+                            %%%%%%%%%%%%%%%%%%%%                           
+                                                                   
+            ";
+
+            Console.ForegroundColor = ConsoleColor.Red; // Set text color
+            Console.WriteLine(asciiArt);
+            Console.ResetColor(); // Reset to default color
+
+
             Console.WriteLine("SecuBot: Hello, I’m SecuBot, here to assist you with all things cybersecurity.");
             Console.WriteLine("In today’s connected world, online security is more crucial than ever, and I’m here to guide you through it.");
             Console.WriteLine("Whether you're seeking advice on securing accounts, recognizing online threats, or understanding best practices, I’m here to help.");
