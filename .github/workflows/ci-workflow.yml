@@ -2,33 +2,39 @@ name: CI Workflow
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - main
 
 jobs:
   build:
-
     runs-on: windows-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'  
 
-    - name: Restore Dependencies
-      run: dotnet restore
+      - name: Restore dependencies
+        run: dotnet restore
 
-    - name: Check Code Formatting
-      run: dotnet format --verify-no-changes
-      continue-on-error: true
+      - name: Build chatbot application
+        run: dotnet build --configuration Release --no-restore
 
-    - name: Build Solution
-      run: dotnet build --configuration Release --no-restore
+      - name: Run tests (if applicable)
+        run: dotnet test --configuration Release --no-restore --verbosity normal
 
-    - name: Run Tests
-      run: dotnet test --no-restore --verbosity normal
+      - name: Publish chatbot app
+        run: dotnet publish -c Release -r win-x64 --self-contained false -o ./publish
+
+      - name: Upload packaged app as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: chatbot-app
+          path: ./publish
