@@ -33,7 +33,7 @@ jobs:
         run: dotnet restore
 
       - name: Format Code
-        run: dotnet format SecuChatbot.sln --verify-no-changes
+        run: dotnet format SecuChatbot/SecuChatbot.csproj --verify-no-changes
 
       - name: Build chatbot application
         run: dotnet build --configuration Release --no-restore
@@ -50,4 +50,3 @@ jobs:
           name: chatbot-app
           path: ./publish
           if-no-files-found: error
-
