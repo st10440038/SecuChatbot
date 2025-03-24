@@ -68,16 +68,6 @@ class Chatbot
             Console.WriteLine("*********************************************************************");
             Console.WriteLine();
 
-            
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine();
-            Console.WriteLine("**********************************************************************");
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            TypeText("Welcome to the Cybersecurity Chatbot!");
-            TypeText("Type 'exit' or 'bye' anytime to end the conversation.");
-            Console.WriteLine();
-            Console.WriteLine("**********************************************************************");
 
 
             Console.ForegroundColor = ConsoleColor.Cyan; 
@@ -94,8 +84,7 @@ class Chatbot
             Console.WriteLine();
             Console.Write("Your Name: ");
 
-            
-            Console.Write("To get started, may I have your name? --------> ");
+
             Console.ForegroundColor = ConsoleColor.Green;
             string? userName = Console.ReadLine();
             Console.ResetColor();
