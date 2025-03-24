@@ -62,7 +62,7 @@ class Chatbot
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             TypeText("Welcome to the Cybersecurity Chatbot!");
-            TypeText("Type 'exit', 'quit', 'no' or 'bye' anytime to end the conversation.");
+            TypeText("Type 'exit', 'quit', 'no' or 'bye' anytime to end the conversation with the bot.");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
             Console.WriteLine("*********************************************************************");
