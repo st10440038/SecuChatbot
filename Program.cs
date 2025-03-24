@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -232,4 +232,3 @@ class Chatbot
         Console.WriteLine();
     }
 }
-
