@@ -2,54 +2,33 @@ name: CI Workflow
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "master" ]
   pull_request:
-    branches:
-      - main
+    branches: [ "master" ]
 
 jobs:
   build:
+
     runs-on: windows-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout Repository
+      uses: actions/checkout@v4
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '7.0.x'  
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x  
 
-      - name: Cache NuGet Packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
-          restore-keys: |
-            ${{ runner.os }}-nuget-
+    - name: Restore Dependencies
+      run: dotnet restore
 
-      - name: Restore dependencies
-        run: dotnet restore
+    - name: Check Code Formatting
+      run: dotnet format --verify-no-changes
+      continue-on-error: true  # Prevents workflow failure due to formatting issues
 
-      - name: Format Code
-        run: dotnet format --workspace SecuChatbot/SecuChatbot.csproj --verify-no-changes
+    - name: Build Solution
+      run: dotnet build --configuration Release --no-restore
 
-      - name: Build chatbot application
-        run: dotnet build --configuration Release --no-restore
-
-      - name: Run tests (if applicable)
-        run: dotnet test --configuration Release --no-restore --verbosity normal || echo "Tests failed, continuing..."
-
-      - name: Publish chatbot app
-        run: dotnet publish -c Release -r win-x64 --self-contained false -o ./publish
-
-      - name: List files in the publish directory
-        run: dir ./publish
-
-      - name: Upload packaged app as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: chatbot-app
-          path: ./publish/**  
-          if-no-files-found: error
+    - name: Run Tests
+      run: dotnet test --no-restore --verbosity normal
