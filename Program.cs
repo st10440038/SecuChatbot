@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +9,16 @@ class Chatbot
         try
         {
             Console.SetWindowSize(100, 30);
-            
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("==============================================================================");
+            Console.WriteLine("||                                                                          ||");
+            Console.WriteLine("||                             SECUBOT V1.0                                 ||");
+            Console.WriteLine("||                                                                          ||");
+            Console.WriteLine("==============================================================================");
+            Console.ResetColor();
+            Console.WriteLine();
+
+
             string asciiArt = @"
                                                                                        
                                                                            
@@ -46,6 +55,18 @@ class Chatbot
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine(asciiArt);
             Console.ResetColor();
+            Console.WriteLine();
+
+
+            Console.WriteLine("*********************************************************************");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            TypeText("Welcome to the Cybersecurity Chatbot!");
+            TypeText("Type 'exit', 'quit' or 'bye' anytime to end the conversation.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+            Console.WriteLine("*********************************************************************");
+            Console.WriteLine();
 
             
             Console.ForegroundColor = ConsoleColor.White;
@@ -58,31 +79,50 @@ class Chatbot
             Console.WriteLine();
             Console.WriteLine("**********************************************************************");
 
-            
+
             Console.ForegroundColor = ConsoleColor.Cyan; 
             TypeText("SecuBot: Hello, I’m SecuBot, here to assist you with all things cybersecurity.");
             TypeText("In today’s connected world, online security is more crucial than ever, and I’m here to guide you through it.");
             TypeText("Whether you're seeking advice on securing accounts, recognizing online threats, or understanding best practices, I’m here to help.");
             Console.WriteLine();
+
+
+            TypeText("To get started, may I have your name?");
+            Console.WriteLine();
+            Console.ResetColor();
+            Console.WriteLine("---------------------------------------------------------------------");
+            Console.WriteLine();
+            Console.Write("Your Name: ");
+
             
             Console.Write("To get started, may I have your name? --------> ");
             Console.ForegroundColor = ConsoleColor.Green;
             string? userName = Console.ReadLine();
-            Console.WriteLine();
+            Console.ResetColor();
+            
 
             while (string.IsNullOrEmpty(userName) || !userName.All(Char.IsLetter))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                TypeText("SecuBot: Could you please provide your name again? --------> ");
-
+                Console.WriteLine();
+                TypeText("SecuBot: Please enter a valid name using only letters.");
+                Console.ResetColor();
+                Console.WriteLine();
+                Console.WriteLine("---------------------------------------------------------------------");
+                Console.WriteLine();
+                Console.Write("Your Name: ");
                 Console.ForegroundColor = ConsoleColor.Green;
                 userName = Console.ReadLine();
-                Console.WriteLine();
+                Console.ResetColor();
             }
 
+            Console.WriteLine();
+            Console.WriteLine("---------------------------------------------------------------------");
+            Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Cyan;
             TypeText($"It's a pleasure to meet you, {userName}! Let's dive into some valuable cybersecurity insights.");
             TypeText("Feel free to ask me anything, or if you’d prefer, I can begin by offering a helpful security tip.");
+            Console.ResetColor();
             Console.WriteLine();
 
 
@@ -132,12 +172,13 @@ class Chatbot
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     TypeText("SecuBot: Oops! It seems like I missed that. Could you please try again?");
+                    Console.ResetColor();
                     continue;
                 }
 
                 if (userInput == "no" || userInput == "exit" || userInput == "bye" || userInput == "quit" || userInput == "no more questions")
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine();
                     TypeText("SecuBot: It was a pleasure assisting you today. Stay safe online, and don’t hesitate to reach out again. Goodbye!");
                     break;
@@ -151,26 +192,37 @@ class Chatbot
                 {
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     TypeText($"\nSecuBot: {responses[matchedCategory]}");
+                    Console.ResetColor();
+                    Console.WriteLine();
+                    Console.WriteLine("---------------------------------------------------------------------");
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     TypeText("\nSecuBot: Hmm, I didn't quite catch that. Feel free to ask me anything related to online security, and I’ll be happy to help!");
+                    Console.WriteLine();
+                    Console.ResetColor();
+                    Console.WriteLine("---------------------------------------------------------------------");
                 }
 
+                
+                Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 TypeText("\nWould you like more information on any specific topic, or do you have any further questions?");
+                Console.ResetColor();
+                Console.WriteLine();
             }
         }
         catch (Exception ex)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             TypeText($"SecuBot: Oh no, something went wrong! I encountered an issue: {ex.Message}. Please try again later, and we’ll get back on track.");
+            Console.ResetColor();
         }
     }
 
 
-    static void TypeText(string text, int delay = 17)
+    static void TypeText(string text, int delay = 15)
     {
         foreach (char c in text)
         {
@@ -180,4 +232,3 @@ class Chatbot
         Console.WriteLine();
     }
 }
-
