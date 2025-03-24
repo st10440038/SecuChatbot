@@ -32,8 +32,8 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
 
-      - name: Check .NET Formatting
-        run: dotnet format --verify-no-changes || echo "Formatting issues detected."
+      - name: Format Code
+        run: dotnet format SecuChatbot.sln --verify-no-changes
 
       - name: Build chatbot application
         run: dotnet build --configuration Release --no-restore
@@ -50,3 +50,4 @@ jobs:
           name: chatbot-app
           path: ./publish
           if-no-files-found: error
+
