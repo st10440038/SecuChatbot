@@ -9,7 +9,7 @@ class Chatbot
         try
         {
             Console.SetWindowSize(100, 30);
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("==============================================================================");
             Console.WriteLine("||                                                                          ||");
             Console.WriteLine("||                             SECUBOT V1.0                                 ||");
