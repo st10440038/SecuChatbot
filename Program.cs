@@ -1,15 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
+using System.Threading;
+
 
 class Chatbot
 {
+
     static void Main()
     {
         try
         {
             Console.SetWindowSize(100, 30);
-            Console.ForegroundColor = ConsoleColor.DarkBlue;
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("==============================================================================");
             Console.WriteLine("||                                                                          ||");
             Console.WriteLine("||                             SECUBOT V1.0                                 ||");
@@ -17,6 +22,7 @@ class Chatbot
             Console.WriteLine("==============================================================================");
             Console.ResetColor();
             Console.WriteLine();
+
 
 
             string asciiArt = @"
