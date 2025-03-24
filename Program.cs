@@ -62,11 +62,22 @@ class Chatbot
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             TypeText("Welcome to the Cybersecurity Chatbot!");
-            TypeText("Type 'exit', 'quit' or 'bye' anytime to end the conversation.");
+            TypeText("Type 'exit', 'quit', 'no' or 'bye' anytime to end the conversation.");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
             Console.WriteLine("*********************************************************************");
             Console.WriteLine();
+
+            
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+            Console.WriteLine("**********************************************************************");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            TypeText("Welcome to the Cybersecurity Chatbot!");
+            TypeText("Type 'exit' or 'bye' anytime to end the conversation.");
+            Console.WriteLine();
+            Console.WriteLine("**********************************************************************");
 
 
             Console.ForegroundColor = ConsoleColor.Cyan; 
@@ -82,6 +93,9 @@ class Chatbot
             Console.WriteLine("---------------------------------------------------------------------");
             Console.WriteLine();
             Console.Write("Your Name: ");
+
+            
+            Console.Write("To get started, may I have your name? --------> ");
             Console.ForegroundColor = ConsoleColor.Green;
             string? userName = Console.ReadLine();
             Console.ResetColor();
@@ -111,6 +125,8 @@ class Chatbot
             Console.ResetColor();
             Console.WriteLine();
 
+
+            
             Dictionary<string, List<string>> keywordDictionary = new Dictionary<string, List<string>>()
             {
                 { "how_are_you", new List<string> { "how are you", "how's it going", "how are you doing", "how’s everything", "how do you feel" } },
@@ -130,7 +146,7 @@ class Chatbot
 
             Dictionary<string, string> responses = new Dictionary<string, string>()
             {
-                { "how_are_you", "I’m doing great, thanks for asking! How about you? How’s everything going on your end? I'm here to chat whenever you’re ready." },
+                { "how_are_you", $"I’m doing great, thanks for asking {userName}! How about you? How’s everything going on your end? I'm here to chat whenever you’re ready." },
                 { "what_can_i_ask", "Oh, there's so much you can ask! I can provide tips on protecting your passwords, spotting phishing attacks, setting up two-factor authentication, and much more. Whatever’s on your mind regarding cybersecurity, feel free to ask!" },
                 { "purpose", "I’m SecuBot, your cybersecurity guide. My goal is to help you stay safe online by answering your questions and providing tips on securing your data, devices, and accounts. Whether you're a beginner or already tech-savvy, I’ve got your back!" },
                 { "cybersecurity", "Cybersecurity is all about protecting your digital life—your data, your devices, and your identity. It involves practices, tools, and technologies that keep your information safe from unauthorized access, damage, or attacks. In simple terms, it's making sure you're safe online." },
@@ -145,6 +161,7 @@ class Chatbot
                 { "encryption", "Encryption is the process of scrambling your data so that only authorized people can read it. It’s like sending a locked box where only the recipient has the key. This technology protects everything from your emails to online banking transactions, ensuring your sensitive information stays private." }
             };
 
+            
             while (true)
             {
                 Console.Write("----------> ");
@@ -203,6 +220,7 @@ class Chatbot
             Console.ResetColor();
         }
     }
+
 
     static void TypeText(string text, int delay = 15)
     {
