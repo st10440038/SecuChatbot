@@ -8,30 +8,38 @@ class Program
 {
     static void Main()
     {
+        // Instantiate the Chatbot class and start the interaction
         Chatbot chatbot = new Chatbot();
         chatbot.Start();
     }
 }
 
+
+// Chatbot class that handles the conversation with the user
 class Chatbot
 {
     private User userObj;
     private ResponseHandler responseHandlerObj;
 
 
+    // Constructor to initialize User and ResponseHandler objects
     public Chatbot()
     {
-        userObj = new User();
-        responseHandlerObj = new ResponseHandler();
+        userObj = new User();  // User object to hold user details
+        responseHandlerObj = new ResponseHandler();  // ResponseHandler object to manage responses
     }
 
 
+    // Method that starts the chatbot conversation
     public void Start()
     {
         try
         {
+            // Set up console window size and appearance
             Console.SetWindowSize(100, 30);
 
+
+            // Display the welcome banner
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("==============================================================================");
             Console.WriteLine("||                                                                          ||");
@@ -42,14 +50,14 @@ class Chatbot
             Console.WriteLine();
 
 
-
+            // ASCII art logo of the chatbot
             string asciiArt = @"
                                                                                        
-                                                                           
+
                            *%%%%%%%%%%%%%%%%%%%%,                          
                       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                     
-                  %%%%%%%%%%%%%%(          #%%%%%%%%%%%%%%                 
-               %%%%%%%%%%.                        *%%%%%%%%%%              
+                  %%%%%%%%%%%%%%(          #%%%%%%%%%%%%%%                   
+               %%%%%%%%%%.                        *%%%%%%%%%%                
             %%%%%%%%%     %&&&&&&&&&&&                 %%%%%%%%%           
           %%%%%%%%.      &&&&&&&&&&& &&              .%%%%%%%%%%%%         
          %%%%%%%        &&& *&&&&&&&   &           %%%%%%%%%%%%%%%%        
@@ -70,17 +78,21 @@ class Chatbot
           %%%%%%%%%%%%                                   #%%%%%%%#         
             %%%%%%%%%.                                /%%%%%%%%#           
                %%%%%%%%%%(                        #%%%%%%%%%%              
-                  %%%%%%%%%%%%%%%.        ,%%%%%%%%%%%%%%%                 
-                      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                     
-                            %%%%%%%%%%%%%%%%%%%%                           
+                  %%%%%%%%%%%%%%%.        ,%%%%%%%%%%%%%%%                   
+                      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                       
+                            %%%%%%%%%%%%%%%%%%%%                            
                                                                    
             ";
 
+
+            // Display the ASCII art logo in the console
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine(asciiArt);
             Console.ResetColor();
             Console.WriteLine();
 
+
+            // Display introductory message
             Console.WriteLine("*********************************************************************");
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -91,6 +103,8 @@ class Chatbot
             Console.WriteLine("*********************************************************************");
             Console.WriteLine();
 
+
+            // Greet the user and explain the chatbot's purpose
             Console.ForegroundColor = ConsoleColor.Cyan;
             TypeText("SecuBot: Hello, I’m SecuBot, here to assist you with all things cybersecurity.");
             TypeText("In today’s connected world, online security is more crucial than ever, and I’m here to guide you through it.");
@@ -101,36 +115,41 @@ class Chatbot
             Console.WriteLine();
             Console.ResetColor();
 
-
             Console.WriteLine("---------------------------------------------------------------------");
             Console.WriteLine();
             Console.Write("Your Name: ");
-            userObj.Name = GetUserInput();
+            userObj.Name = GetUserInput();  // Get the user's name
             Console.WriteLine();
             Console.WriteLine("---------------------------------------------------------------------");
             Console.WriteLine();
 
 
+            // Greet the user by name and offer assistance
             Console.ForegroundColor = ConsoleColor.Cyan;
             TypeText($"It's a pleasure to meet you, {userObj.Name}! Let's dive into some valuable cybersecurity insights.");
             TypeText("Feel free to ask me anything, or if you’d prefer, I can begin by offering a helpful security tip.");
             Console.ResetColor();
             Console.WriteLine();
 
+
+            // Start the conversation loop
             while (true)
             {
                 Console.Write("----------> ");
                 Console.ForegroundColor = ConsoleColor.Green;
-                string? userInput = Console.ReadLine()?.ToLower();
+                string? userInput = Console.ReadLine()?.ToLower();  // Get user input
 
                 if (userInput == null)
                 {
+                    // Handle empty input
                     Console.ForegroundColor = ConsoleColor.Red;
                     TypeText("SecuBot: Oops! It seems like I missed that. Could you please try again?");
                     Console.ResetColor();
                     continue;
                 }
 
+
+                // Check if the user wants to exit the conversation
                 if (userInput == "no" || userInput == "exit" || userInput == "bye" || userInput == "quit" || userInput == "no more questions")
                 {
                     Console.ForegroundColor = ConsoleColor.Cyan;
@@ -140,6 +159,8 @@ class Chatbot
                     break;
                 }
 
+
+                // Get and display the response based on user input
                 var response = responseHandlerObj.GetResponse(userInput);
                 if (string.IsNullOrEmpty(response))
                 {
@@ -158,6 +179,8 @@ class Chatbot
                     Console.WriteLine("---------------------------------------------------------------------");
                 }
 
+
+                // Ask if the user has more questions
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 TypeText("\nWould you like more information on any specific topic, or do you have any further questions?");
@@ -167,24 +190,28 @@ class Chatbot
         }
         catch (Exception ex)
         {
+            // To andle exceptions gracefully
             Console.ForegroundColor = ConsoleColor.Red;
             TypeText($"SecuBot: Oh no, something went wrong! I encountered an issue: {ex.Message}. Please {userObj.Name} try again later, and we’ll get back on track.");
             Console.ResetColor();
         }
     }
 
- 
+
+    // Method to get and validate user input for the name
     private string GetUserInput()
     {
         Console.ForegroundColor = ConsoleColor.Green;
         string? userName = Console.ReadLine();
         Console.ResetColor();
 
+
+        // Validate that the name contains only valid characters
         while (string.IsNullOrEmpty(userName) || !System.Text.RegularExpressions.Regex.IsMatch(userName, @"^[a-zA-Z\s'-]+$"))
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine();
-            TypeText("SecuBot: Please enter a valid name using only letters.");
+            TypeText("SecuBot: Please enter a valid name using only letters, spaces, apostrophes, or dashes.");
             Console.ResetColor();
             Console.WriteLine();
             Console.WriteLine("---------------------------------------------------------------------");
@@ -197,75 +224,106 @@ class Chatbot
         return userName;
     }
 
+
+    // Method to simulate typing text with a delay
     static void TypeText(string text, int delay = 15)
     {
         foreach (char c in text)
         {
             Console.Write(c);
-            Thread.Sleep(delay);
+            Thread.Sleep(delay);  // Pause for a short duration between characters
         }
         Console.WriteLine();
     }
 }
 
+
+// User class to hold the user's name
 public class User
 {
     public string? Name { get; set; }
 }
 
-public class ResponseHandler
-{ 
+// Static class to define response categories
+public static class ResponseCategories
+{
+    public const string HowAreYou = "how_are_you";
+    public const string WhatCanIAsk = "what_can_i_ask";
+    public const string Purpose = "purpose";
+    public const string Cybersecurity = "cybersecurity";
+    public const string Passwords = "passwords";
+    public const string Phishing = "phishing";
+    public const string TwoFA = "2fa";
+    public const string SocialEngineering = "social_engineering";
+    public const string Malware = "malware";
+    public const string SafeBrowsing = "safe_browsing";
+    public const string DataPrivacy = "data_privacy";
+    public const string SecureMessaging = "secure_messaging";
+    public const string Encryption = "encryption";
+}
 
+
+// ResponseHandler class that handles responses based on user input
+public class ResponseHandler
+{
     private Dictionary<string, List<string>> keywordDictionary;
     private Dictionary<string, string> responses;
 
     public ResponseHandler()
     {
+        // Initialize keyword dictionary to map categories to possible user input
         keywordDictionary = new Dictionary<string, List<string>>()
         {
-            { "how_are_you", new List<string> { "how are you", "how's it going", "how are you doing", "how’s everything", "how do you feel" } },
-            { "what_can_i_ask", new List<string> { "what can I ask you", "what topics can I discuss", "what are you here to help with", "what can I learn from you" } },
-            { "purpose", new List<string> { "who are you", "what do you do", "what’s your purpose", "explain yourself", "tell me about your role" } },
-            { "cybersecurity", new List<string> { "cybersecurity", "digital security", "online security", "cyber threats", "protecting my data" } },
-            { "passwords", new List<string> { "password", "strong password", "password tips", "how to make a secure password", "password management" } },
-            { "phishing", new List<string> { "phishing", "scam email", "fraudulent email", "phishing attacks", "how to recognize phishing" } },
-            { "2fa", new List<string> { "2fa", "two-factor authentication", "MFA", "two-step verification", "how to set up 2fa" } },
-            { "social_engineering", new List<string> { "social engineering", "human hacking", "manipulation", "fraudulent requests", "spotting social engineering" } },
-            { "malware", new List<string> { "malware", "virus", "trojan", "spyware", "ransomware", "malicious software" } },
-            { "safe_browsing", new List<string> { "safe browsing", "secure websites", "dangerous sites", "how to browse safely", "internet security" } },
-            { "data_privacy", new List<string> { "data privacy", "personal data", "protecting personal information", "online privacy" } },
-            { "secure_messaging", new List<string> { "secure messaging", "encrypted messages", "private messaging", "secure communication" } },
-            { "encryption", new List<string> { "encryption", "encrypted data", "data encryption", "how encryption works", "secure communications" } }
+            { ResponseCategories.HowAreYou, new List<string> { "how are you", "how's it going", "how are you doing", "how’s everything", "how do you feel", "what's up" }  },
+            { ResponseCategories.WhatCanIAsk, new List<string> { "what can I ask you", "what topics can I discuss", "what are you here to help with", "what can I learn from you" } },
+            { ResponseCategories.Purpose, new List<string> { "who are you", "what do you do", "what’s your purpose", "explain yourself", "tell me about your role" } },
+            { ResponseCategories.Cybersecurity, new List<string> { "cybersecurity", "digital security", "online security", "cyber threats", "protecting my data" } },
+            { ResponseCategories.Passwords, new List<string> { "password", "strong password", "password tips", "secure password", "password management" } },
+            { ResponseCategories.Phishing, new List<string> { "phishing", "scam email", "fraudulent email", "phishing attacks", "how to recognize phishing" } },
+            { ResponseCategories.TwoFA, new List<string> { "2fa", "two-factor authentication", "MFA", "two-step verification", "how to set up 2fa" } },
+            { ResponseCategories.SocialEngineering, new List<string> { "social engineering", "human hacking", "manipulation", "fraudulent requests", "spotting social engineering" } },
+            { ResponseCategories.Malware, new List<string> { "malware", "virus", "trojan", "spyware", "ransomware", "malicious software" } },
+            { ResponseCategories.SafeBrowsing, new List<string> { "safe browsing", "secure websites", "dangerous sites", "how to browse safely", "internet security" } },
+            { ResponseCategories.DataPrivacy, new List<string> { "data privacy", "personal data", "protecting personal information", "online privacy" } },
+            { ResponseCategories.SecureMessaging, new List<string> { "secure messaging", "encrypted messages", "private messaging", "secure communication" } },
+            { ResponseCategories.Encryption, new List<string> { "encryption", "encrypted data", "data encryption", "how encryption works", "secure communications" } }
         };
 
+
+        // Initialize responses for each category
         responses = new Dictionary<string, string>()
         {
-            { "how_are_you", "I’m doing great, thanks for asking ! How about you ? How’s everything going on your end? I'm here to chat whenever you’re ready." },
-            { "what_can_i_ask", "Oh, there's so much you can ask! I can provide tips on protecting your passwords, spotting phishing attacks, setting up two-factor authentication, and much more. Whatever’s on your mind regarding cybersecurity, feel free to ask!" },
-            { "purpose", "I’m SecuBot, your cybersecurity guide. My goal is to help you stay safe online by answering your questions and providing tips on securing your data, devices, and accounts. Whether you're a beginner or already tech-savvy, I’ve got your back!" },
-            { "cybersecurity", "Cybersecurity is all about protecting your digital life—your data, your devices, and your identity. It involves practices, tools, and technologies that keep your information safe from unauthorized access, damage, or attacks. In simple terms, it's making sure you're safe online." },
-            { "passwords", "When creating a strong password, mix things up! Use a combination of upper and lowercase letters, numbers, and symbols. The longer, the better—12 characters or more is ideal. And please avoid common patterns or using personal info like birthdays. Password managers can also help you keep track of them securely." },
-            { "phishing", "Phishing is a tricky scam where attackers pretend to be someone you trust, like your bank or a coworker, to steal sensitive information. Be wary of unsolicited emails or messages that ask you to click on links or open attachments. Always verify the source before taking any action." },
-            { "2fa", "Two-factor authentication (2FA) is like adding an extra lock to your door. After entering your password, 2FA requires you to verify your identity by entering a code sent to your phone or email. It’s a super easy way to add an extra layer of protection to your accounts." },
-            { "social_engineering", "Social engineering is when attackers manipulate people into giving up sensitive information. They might trick you into sharing your password or personal details through phone calls, emails, or even face-to-face interactions. Always stay cautious and verify who you're dealing with before disclosing any information." },
-            { "malware", "Malware refers to any software intentionally designed to harm or exploit your device. This can include viruses, spyware, or ransomware. Always keep your software up-to-date, and avoid downloading files or clicking on links from untrusted sources. Anti-malware software is a great way to protect yourself." },
-            { "safe_browsing", "Safe browsing is all about staying aware of the websites you visit. Look for 'HTTPS' in the URL—it's a sign the site encrypts your data. Also, avoid clicking on suspicious links and be cautious of pop-ups or ads that seem too good to be true. A VPN can also protect you when browsing on public Wi-Fi." },
-            { "data_privacy", "Data privacy means keeping your personal information private and secure. This includes things like your name, email, browsing habits, and even where you are. Be mindful of the information you share online, and review your privacy settings on social media platforms regularly to ensure your data is safe." },
-            { "secure_messaging", "When it comes to messaging securely, look for services that offer end-to-end encryption, like Signal or WhatsApp. This means that only you and the recipient can read your messages, keeping hackers or unwanted third parties from eavesdropping." },
-            { "encryption", "Encryption is the process of scrambling your data so that only authorized people can read it. It’s like sending a locked box where only the recipient has the key. This technology protects everything from your emails to online banking transactions, ensuring your sensitive information stays private." }
+            { ResponseCategories.HowAreYou, "I’m doing great, thanks for asking ! How about you ? How’s everything going on your end? I'm here to chat whenever you’re ready." },
+            { ResponseCategories.WhatCanIAsk, "Oh, there's so much you can ask! I can provide tips on protecting your passwords, spotting phishing attacks, setting up two-factor authentication, and much more. Whatever’s on your mind regarding cybersecurity, feel free to ask!" },
+            { ResponseCategories.Purpose, "I’m SecuBot, your cybersecurity guide. My goal is to help you stay safe online by answering your questions and providing tips on securing your data, devices, and accounts. Whether you're a beginner or already tech-savvy, I’ve got your back!" },
+            { ResponseCategories.Cybersecurity, "Cybersecurity is all about protecting your digital life—your data, your devices, and your identity. It involves practices, tools, and technologies that keep your information safe from unauthorized access, damage, or attacks. In simple terms, it's making sure you're safe online." },
+            { ResponseCategories.Passwords, "When creating a strong password, mix things up! Use a combination of upper and lowercase letters, numbers, and symbols. The longer, the better—12 characters or more is ideal. And please avoid common patterns or using personal info like birthdays. Password managers can also help you keep track of them securely." },
+            { ResponseCategories.Phishing, "Phishing is when someone tries to trick you into revealing personal information, like passwords or credit card numbers, by pretending to be someone trustworthy. Often this happens via email or text messages with suspicious links or attachments. Always double-check the sender’s details and look out for suspicious language!" },
+            { ResponseCategories.TwoFA, "Two-factor authentication (2FA) adds an extra layer of security by requiring two forms of verification—usually a password and a temporary code sent to your phone or email. It’s one of the easiest ways to secure your accounts from unauthorized access." },
+            { ResponseCategories.SocialEngineering, "Social engineering is when attackers manipulate people into revealing sensitive information or performing actions they wouldn’t normally do. They might pretend to be someone you trust, like a co-worker or IT support, to get you to share login credentials or other private details." },
+            { ResponseCategories.Malware, "Malware is malicious software designed to harm your device or steal information. It includes viruses, ransomware, spyware, and trojans. Always keep your software updated, use antivirus programs, and avoid downloading files from untrusted sources." },
+            { ResponseCategories.SafeBrowsing, "Safe browsing means being cautious of the websites you visit. Stick to reputable sites, especially when entering sensitive information. Make sure the website’s URL begins with ‘https’ (the ‘s’ stands for secure), and be wary of pop-up ads or unsolicited offers." },
+            { ResponseCategories.DataPrivacy, "Data privacy is about protecting your personal information online. Be mindful of what you share on social media, and ensure that the services you use are respecting your privacy. You should also be aware of the laws and regulations surrounding data protection, like GDPR." },
+            { ResponseCategories.SecureMessaging, "Secure messaging platforms use encryption to protect the content of your conversations. Examples include apps like Signal and WhatsApp. Encrypted messaging ensures that only the intended recipient can read your messages, protecting your privacy." },
+            { ResponseCategories.Encryption, "Encryption is a process that transforms your data into an unreadable format unless the recipient has the key to decrypt it. It’s widely used to secure sensitive information, such as communications, banking transactions, and personal data." }
         };
     }
 
+
+    // Method to get a response based on user input
     public string GetResponse(string userInput)
     {
-        string matchedCategory = keywordDictionary
-            .FirstOrDefault(entry => entry.Value.Any(keyword => userInput.Contains(keyword)))
-            .Key;
-
-        if (!string.IsNullOrEmpty(matchedCategory) && responses.ContainsKey(matchedCategory))
+        // Loop through each category and check for a match with user input
+        foreach (var category in keywordDictionary)
         {
-            return responses[matchedCategory];
+            foreach (var keyword in category.Value)
+            {
+                if (userInput.Contains(keyword))
+                {
+                    return responses[category.Key];  // Return the corresponding response
+                }
+            }
         }
-        return string.Empty;
+        return string.Empty;  // Return empty if no match is found
     }
 }
