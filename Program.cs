@@ -2,17 +2,61 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Media;
+using System.IO;
+using System.Reflection;
 
 
 class Program
 {
     static void Main()
     {
+        // Set up console window size and appearance
+        Console.SetWindowSize(100, 50);
+
+        // Play voice greeting
+        PlayVoiceGreeting();
+
         // Instantiate the Chatbot class and start the interaction
         Chatbot chatbot = new Chatbot();
         chatbot.Start();
     }
+
+    static void PlayVoiceGreeting()
+    {
+        try
+        {
+            string audioPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "audioWelcomeChatbot.wav");
+
+            if (File.Exists(audioPath))
+            {
+                using (SoundPlayer player = new SoundPlayer(audioPath))
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.WriteLine("[Playing audio greeting...]");
+                    Console.ResetColor();
+                    player.PlaySync();
+                    Thread.Sleep(2000);
+                }
+                return;
+            }
+
+            // Fallback if no audio file found
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("Welcome to the Cybersecurity Awareness Bot!");
+            Console.Beep(1000, 500);
+            Console.ResetColor();
+        }
+        catch (Exception ex)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine($"Audio error: {ex.Message}");
+            Console.ResetColor();
+        }
+    }
 }
+
+
 
 
 // Chatbot class that handles the conversation with the user
@@ -35,9 +79,6 @@ class Chatbot
     {
         try
         {
-            // Set up console window size and appearance
-            Console.SetWindowSize(100, 30);
-
 
             // Display the welcome banner
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -188,9 +229,9 @@ class Chatbot
                 Console.WriteLine();
             }
         }
+
         catch (Exception ex)
         {
-            // To andle exceptions gracefully
             Console.ForegroundColor = ConsoleColor.Red;
             TypeText($"SecuBot: Oh no, something went wrong! I encountered an issue: {ex.Message}. Please {userObj.Name} try again later, and we’ll get back on track.");
             Console.ResetColor();
@@ -198,31 +239,44 @@ class Chatbot
     }
 
 
-    // Method to get and validate user input for the name
+    // Method to get user input with error handling for invalid or empty inputs
     private string GetUserInput()
     {
         Console.ForegroundColor = ConsoleColor.Green;
         string? userName = Console.ReadLine();
         Console.ResetColor();
 
+        try
+        {
+            // Validate that the name contains only valid characters
+            while (string.IsNullOrEmpty(userName) || !System.Text.RegularExpressions.Regex.IsMatch(userName, @"^[a-zA-Z\s'-]+$"))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine();
+                TypeText("SecuBot: Please enter a valid name using only letters, spaces, apostrophes, or dashes.");
+                Console.ResetColor();
+                Console.WriteLine();
+                Console.WriteLine("---------------------------------------------------------------------");
+                Console.WriteLine();
+                Console.Write("Your Name: ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                userName = Console.ReadLine();
+                Console.ResetColor();
+            }
+        }
 
-        // Validate that the name contains only valid characters
-        while (string.IsNullOrEmpty(userName) || !System.Text.RegularExpressions.Regex.IsMatch(userName, @"^[a-zA-Z\s'-]+$"))
+        catch (Exception ex)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine();
-            TypeText("SecuBot: Please enter a valid name using only letters, spaces, apostrophes, or dashes.");
+            TypeText($"SecuBot: An error occurred while processing your input. Please try again. Error details: {ex.Message}");
             Console.ResetColor();
-            Console.WriteLine();
-            Console.WriteLine("---------------------------------------------------------------------");
-            Console.WriteLine();
-            Console.Write("Your Name: ");
-            Console.ForegroundColor = ConsoleColor.Green;
-            userName = Console.ReadLine();
-            Console.ResetColor();
+            return GetUserInput();  // Recursively call to get valid input
         }
+
         return userName;
+        
     }
+
 
 
     // Method to simulate typing text with a delay
