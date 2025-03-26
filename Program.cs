@@ -184,7 +184,7 @@ class Chatbot
                 {
                     // Handle empty input
                     Console.ForegroundColor = ConsoleColor.Red;
-                    TypeText("SecuBot: Oops! It seems like I missed that. Could you please try again?");
+                    TypeText($"SecuBot: Oops {userObj.Name}! It seems like I missed that. Could you please try again?");
                     Console.ResetColor();
                     continue;
                 }
@@ -206,7 +206,7 @@ class Chatbot
                 if (string.IsNullOrEmpty(response))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    TypeText("\nSecuBot: Hmm, I didn't quite catch that. Feel free to ask me anything related to online security, and I’ll be happy to help!");
+                    TypeText($"\nSecuBot: Hmm, I didn't quite catch that. Feel free to ask me anything related to online security, and I’ll be happy to help you {userObj.Name}!");
                     Console.WriteLine();
                     Console.ResetColor();
                     Console.WriteLine("---------------------------------------------------------------------");
@@ -224,7 +224,7 @@ class Chatbot
                 // Ask if the user has more questions
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                TypeText("\nWould you like more information on any specific topic, or do you have any further questions?");
+                TypeText($"\nWould you like more information on any specific topic {userObj.Name}, or do you have any further questions?");
                 Console.ResetColor();
                 Console.WriteLine();
             }
@@ -329,7 +329,7 @@ public class ResponseHandler
         keywordDictionary = new Dictionary<string, List<string>>()
         {
             { ResponseCategories.HowAreYou, new List<string> { "how are you", "how's it going", "how are you doing", "how’s everything", "how do you feel", "what's up" }  },
-            { ResponseCategories.WhatCanIAsk, new List<string> { "what can I ask you", "what topics can I discuss", "what are you here to help with", "what can I learn from you" } },
+            { ResponseCategories.WhatCanIAsk, new List<string> { "what can I ask you", "what topics can I discuss", "what are you here to help with", "what can I learn from you", "what should I ask", "what topics do you cover", "what can I talk to you about"} },
             { ResponseCategories.Purpose, new List<string> { "who are you", "what do you do", "what’s your purpose", "explain yourself", "tell me about your role" } },
             { ResponseCategories.Cybersecurity, new List<string> { "cybersecurity", "digital security", "online security", "cyber threats", "protecting my data" } },
             { ResponseCategories.Passwords, new List<string> { "password", "strong password", "password tips", "secure password", "password management" } },
@@ -372,7 +372,7 @@ public class ResponseHandler
         {
             foreach (var keyword in category.Value)
             {
-                if (userInput.Contains(keyword))
+                if (userInput.Contains(keyword.ToLower()))
                 {
                     return responses[category.Key];  // Return the corresponding response
                 }
