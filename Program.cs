@@ -32,6 +32,7 @@ public static class ResponseCategories
 
 
 
+
 // ResponseHandler class that handles responses based on user input
 public class ResponseHandler
 {
@@ -63,6 +64,7 @@ public class ResponseHandler
         };
 
 
+
         // Initialize responses for each category
         responses = new Dictionary<string, string>()
         {
@@ -84,7 +86,6 @@ public class ResponseHandler
 
 
 
-
         // Initialize random responses for each category
         keywordResponses = new Dictionary<string, List<string>>()
         {
@@ -98,6 +99,8 @@ public class ResponseHandler
                 "Phishers may create fake websites that look identical to real ones. Always double-check the web address before entering login credentials.",
                 "Even text messages (known as 'smishing') and phone calls (known as 'vishing') can be phishing attempts. It’s not just limited to email."
             }},
+
+
             { ResponseCategories.Cybersecurity, new List<string>
             {
                 "Cybersecurity is all about protecting your digital life—your data, your devices, and your identity. It involves practices, tools, and technologies that keep your information safe from unauthorized access, damage, or attacks.",
@@ -107,6 +110,8 @@ public class ResponseHandler
                 "Think of cybersecurity as digital hygiene—just like washing hands prevents illness, good cybersecurity habits prevent digital threats.",
                 "Human error is one of the biggest security risks. Staying informed and cautious is just as important as using technical tools."
             }},
+
+
             { ResponseCategories.Passwords, new List<string>
             {
                 "Use a mix of uppercase, lowercase, numbers, and symbols in your passwords. The longer the password, the better—aim for at least 12 characters.",
@@ -116,6 +121,8 @@ public class ResponseHandler
                 "A passphrase made up of random words (like 'GreenHorseBatteryRiver!') can be easier to remember and harder to crack.",
                 "Changing your passwords regularly helps reduce the chances of long-term unauthorized access if a password is compromised."
             }},
+
+
             { ResponseCategories.TwoFA, new List<string>
             {
                 "Two-factor authentication (2FA) adds an extra layer of security by requiring something you know (your password) and something you have (a code sent to your phone).",
@@ -125,6 +132,8 @@ public class ResponseHandler
                 "Authenticator apps like Google Authenticator or Authy are more secure than SMS because text messages can be intercepted.",
                 "Using 2FA is one of the simplest ways to significantly improve your online security with minimal effort."
             }},
+
+
             { ResponseCategories.SocialEngineering, new List<string>
             {
                 "Social engineering relies on manipulating people into divulging confidential information. Be cautious if someone pressures you for sensitive data.",
@@ -134,6 +143,19 @@ public class ResponseHandler
                 "Always question unusual requests, even if they come from someone you know. Their account may have been compromised.",
                 "Be alert for phrases like 'just this once' or 'don’t tell anyone'—these are common social engineering red flags."
             }},
+
+
+            { ResponseCategories.Scam, new List<string>
+            {
+                "Scams can take many forms, including fake emails, phone calls, or websites. Always be skeptical of offers that seem too good to be true.",
+                "If someone asks for personal information or money upfront, it’s likely a scam. Legitimate organizations will never ask for sensitive data in this way.",
+                "Research any company or individual before engaging with them. Look for reviews or reports of scams associated with them.",
+                "Be cautious of unsolicited messages claiming you’ve won a prize or lottery. Scammers often use these tactics to lure victims.",
+                "If you feel pressured to act quickly, take a step back. Scammers often create a sense of urgency to trick you into making hasty decisions.",
+                "Trust your instincts—if something feels off, it probably is. Always err on the side of caution."
+            }},
+
+
             { ResponseCategories.Malware, new List<string>
             {
                 "Malware is any software intentionally designed to cause damage. Viruses, ransomware, and spyware are all types of malware.",
@@ -143,6 +165,8 @@ public class ResponseHandler
                 "Some malware operates silently in the background, stealing data without obvious symptoms. Regular scans are important.",
                 "Ransomware is a type of malware that locks your files and demands payment to unlock them. Backups are your best defense."
             }},
+
+
             { ResponseCategories.SafeBrowsing, new List<string>
             {
                 "Safe browsing is essential for protecting your personal data. Always make sure the website URL starts with 'https' (the 's' stands for secure).",
@@ -152,6 +176,8 @@ public class ResponseHandler
                 "Look for security indicators like a padlock symbol in the address bar to confirm a site is encrypted.",
                 "If a site asks for personal information too soon or without reason, that’s a red flag. Leave the site immediately."
             }},
+
+
             { ResponseCategories.DataPrivacy, new List<string>
             {
                 "Data privacy is about keeping your personal information safe. Be selective about the data you share online, and only provide necessary details to trusted services.",
@@ -161,6 +187,8 @@ public class ResponseHandler
                 "Companies may collect more data than they need. Review app permissions and turn off those you don’t use.",
                 "Always log out of public or shared computers to prevent others from accessing your private information."
             }},
+
+
             { ResponseCategories.SecureMessaging, new List<string>
             {
                 "Secure messaging ensures that only the intended recipient can read your messages. End-to-end encryption is a key feature of secure messaging apps like Signal and WhatsApp.",
@@ -170,6 +198,8 @@ public class ResponseHandler
                 "Secure messaging is especially important for discussing financial, legal, or medical matters.",
                 "Some apps claim to be secure but don’t offer full encryption. Always check for end-to-end encryption in their features."
             }},
+
+
             { ResponseCategories.Encryption, new List<string>
             {
                 "Encryption turns your data into an unreadable format, making it secure from unauthorized access. Only those with the decryption key can read it.",
@@ -185,22 +215,12 @@ public class ResponseHandler
     }
 
 
-    
-
 
     // List of keywords that indicate confusion
     public List<string> confusionKeywords = new List<string>
     {
         "explain", "not sure", "don't understand", "confused", "more info", "more details", "tell me more", "clarify", "say again", "don't get it"
     };
-
-
-    // Tracks last used response index for each topic to avoid repetition
-    private Dictionary<string, int> lastUsedIndex = new Dictionary<string, int>();
-
-
-    // Random generator
-    private Random rand = new Random();
 
 
 
@@ -216,6 +236,7 @@ public class ResponseHandler
         }
         return null;
     }
+
 
 
     string lastTopic = null;
@@ -322,6 +343,7 @@ public class ResponseHandler
 
 
 
+
     // Chatbot class that handles the conversation with the user
     class Chatbot
     {
@@ -341,6 +363,19 @@ public class ResponseHandler
         // Dictionary for interest-based tips
         Dictionary<string, List<string>> interestTips = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase)
         {
+
+            { ResponseCategories.Cybersecurity, new List<string>
+                {
+                    "always use strong passwords and change them regularly.",
+                    "keep your software and operating system updated.",
+                    "be cautious of suspicious emails and links.",
+                    "use a VPN when connecting to public Wi-Fi networks.",
+                    "regularly back up your data to prevent loss.",
+                    "enable two-factor authentication on important accounts."
+                }
+            },
+
+
             { ResponseCategories.DataPrivacy, new List<string>
                 {
                     "review the security settings on your accounts.",
@@ -351,13 +386,17 @@ public class ResponseHandler
                     "use a VPN when browsing on public Wi-Fi."
                 }
             },
+
+
             { ResponseCategories.Phishing, new List<string>
                 {
-                    "learn how to identify fake links and suspicious attachments.",
+                    "learn how to identify fake links and suspicious attachments. It's very important to not fall into those tricks",
                     "verify the sender’s email address before clicking anything.",
-                    "not respond to urgent messages asking for personal info."
+                    "not respond to urgent messages asking for personal info. Read carefully before doing anything."
                 }
             },
+
+
             { ResponseCategories.Passwords, new List<string>
                 {
                     "use long, unique passwords for every account.",
@@ -365,6 +404,8 @@ public class ResponseHandler
                     "avoid including personal info in your passwords."
                 }
             },
+
+
             { ResponseCategories.Malware, new List<string>
                 {
                     "avoid downloading files from unknown sources.",
@@ -372,6 +413,8 @@ public class ResponseHandler
                     "ignore pop-ups offering free virus scans or prizes."
                 }
             },
+
+
             { ResponseCategories.TwoFA, new List<string>
                 {
                     "enable two-factor authentication on important accounts.",
@@ -379,6 +422,8 @@ public class ResponseHandler
                     "back up your 2FA codes in a secure location."
                 }
             },
+
+
             { ResponseCategories.SocialEngineering, new List<string>
                 {
                     "stay cautious if someone pressures you for sensitive info.",
@@ -386,6 +431,8 @@ public class ResponseHandler
                     "don’t assume someone is legit just because they sound official."
                 }
             },
+
+
             { ResponseCategories.SafeBrowsing, new List<string>
                 {
                     "check that websites use 'https' before entering personal data.",
@@ -394,6 +441,7 @@ public class ResponseHandler
                 }
             },
 
+
             { ResponseCategories.SecureMessaging, new List<string>
                 {
                     "use apps that offer end-to-end encryption like Signal.",
@@ -401,6 +449,8 @@ public class ResponseHandler
                     "check if your messaging app stores messages in the cloud."
                 }
             },
+
+
             { ResponseCategories.Encryption, new List<string>
                 {
                     "enable full-disk encryption on your devices.",
@@ -408,6 +458,8 @@ public class ResponseHandler
                     "ensure sensitive data is encrypted during transfers."
                 }
             },
+
+
             { ResponseCategories.Scam, new List<string>
                 {
                     "verify unexpected requests before sharing any details.",
@@ -418,13 +470,16 @@ public class ResponseHandler
         };
 
 
+
+
         // List of keywords (make sure they match your dictionary keys)
         List<string> knownInterests = new List<string>
         {
             "phishing", "data privacy", "passwords", "malware", "2fa",
             "social engineering", "safe browsing", "secure messaging",
-            "encryption", "scam"
+            "encryption", "scam", "cybersecurity"
         };
+
 
 
 
@@ -440,6 +495,7 @@ public class ResponseHandler
             return null;
         }
 
+        
 
 
         // Method to show interest-based tips every 3 turns
@@ -473,7 +529,7 @@ public class ResponseHandler
                     {
                         $"As someone interested in {user.Interest}, you might want to {{0}}",
                         $"Since you're focused on {user.Interest}, consider this: {{0}}",
-                        $"Your interest in {user.Interest} is important. Here's a tip: {{0}}"
+                        $"Your interest in {user.Interest} is important, {userObj.Name}. Here's a tip: {{0}}"
                     };
 
                     string selectedTemplate = templates[rnd.Next(templates.Length)];
@@ -486,6 +542,8 @@ public class ResponseHandler
                 }
             }
         }
+
+
 
 
 
@@ -588,8 +646,6 @@ public class ResponseHandler
                 Console.WriteLine();
 
 
-                string currentTopic = "";
-
 
                 int conversationTurn = 0;
 
@@ -606,6 +662,7 @@ public class ResponseHandler
                     Console.ResetColor();
 
 
+
                     if (userInput == null)
                     {
                         // Handle empty input
@@ -614,6 +671,7 @@ public class ResponseHandler
                         Console.ResetColor();
                         continue;
                     }
+
 
 
                     // Check if the user wants to exit the conversation
@@ -627,6 +685,7 @@ public class ResponseHandler
                     }
 
 
+
                     if (userInput.ToLower().StartsWith("i'm interested in "))
                     {
                         string interest = userInput.Substring("i'm interested in ".Length).Trim();
@@ -636,8 +695,11 @@ public class ResponseHandler
                         {
                             userObj.Interest = detectedInterest;
                             Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.WriteLine($"Great! I'll remember that you're interested in {detectedInterest}.");
+                            Console.WriteLine();
+                            TypeText($"SecuBot: Great! I'll remember that you're interested in {detectedInterest}.");
                             Console.ResetColor();
+                            Console.WriteLine();
+                            Console.WriteLine("---------------------------------------------------------------------");
                         }
                         else
                         {
@@ -648,6 +710,7 @@ public class ResponseHandler
                             Console.WriteLine("---------------------------------------------------------------------");
                         }
 
+
                         // Ask if the user has more questions
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         TypeText($"\nWould you like more information on any specific topic {userObj.Name}, or do you have any further questions?");
@@ -655,6 +718,31 @@ public class ResponseHandler
                         Console.WriteLine();
                         continue;
 
+                    }
+
+
+
+
+                    // Check for sentiment
+                    string sentiment = DetectSentiment(userInput);
+                    string empatheticReply = GetEmpatheticResponse(sentiment);
+
+                    if (!string.IsNullOrEmpty(empatheticReply))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        TypeText("\nSecuBot: " + empatheticReply);
+                        Console.ResetColor();
+                        Console.WriteLine();
+                        Console.WriteLine("---------------------------------------------------------------------");
+
+
+
+                        // Ask if the user has more questions
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        TypeText($"\nWould you like more information on any specific topic {userObj.Name}, or do you have any further questions?");
+                        Console.ResetColor();
+                        Console.WriteLine();
+                        continue;
                     }
 
 
@@ -690,8 +778,74 @@ public class ResponseHandler
 
 
 
-        
+        string DetectSentiment(string input)
+        {
 
+            input = input.ToLower();
+
+
+            // Worried Sentiment
+            if (input.Contains("worried") || input.Contains("anxious") || input.Contains("scared") || input.Contains("concerned") || input.Contains("nervous") || input.Contains("uneasy"))
+                return "worried";
+
+
+            // Curious Sentiment
+            if (input.Contains("curious") || input.Contains("interested") || input.Contains("wondering") || input.Contains("inquiring") || input.Contains("questioning") || input.Contains("keen"))
+                return "curious";
+
+
+            // Frustrated Sentiment
+            if (input.Contains("frustrated") || input.Contains("confused") || input.Contains("annoyed") || input.Contains("irritated") || input.Contains("angry") || input.Contains("disappointed"))
+                return "frustrated";
+
+
+            // Confident Sentiment
+            if (input.Contains("confident") || input.Contains("sure") || input.Contains("positive") || input.Contains("certain") || input.Contains("self-assured") || input.Contains("optimistic"))
+                return "confident";
+
+
+            // Overwhelmed Sentiment
+            if (input.Contains("overwhelmed") || input.Contains("stressed") || input.Contains("lost") || input.Contains("swamped") || input.Contains("burdened") || input.Contains("flooded"))
+                return "overwhelmed";
+
+
+            // Happy Sentiment
+            if (input.Contains("happy") || input.Contains("excited") || input.Contains("glad") || input.Contains("joyful") || input.Contains("elated") || input.Contains("cheerful"))
+                return "happy";
+
+
+            // Default to Neutral if no sentiment is detected
+            return "neutral";
+        }
+
+
+
+        string GetEmpatheticResponse(string sentiment)
+        {
+            switch (sentiment)
+            {
+                case "worried":
+                    return $"It's completely understandable to feel that way, {userObj.Name}. Tell me all your questions and I will share some tips to help you stay safe.";
+
+                case "curious":
+                    return $"I love that you're curious about things around cybersecurity, {userObj.Name}! It's a great way to protect yourself and learn.";
+
+                case "frustrated":
+                    return $"I know it can feel frustrating. the cybersecurity field can be tricky, but I'm here to help you {userObj.Name}.";
+
+                case "confident":
+                    return $"That's great to hear, {userObj.Name}! Confidence is key in cybersecurity. Keep up the good work!";
+
+                case "overwhelmed":
+                    return $"I understand that cybersecurity can feel overwhelming at times. Don't worry {userObj.Name}, we'll break it down together, step by step.";
+
+                case "happy":
+                    return $"I'm glad to hear you're feeling happy, {userObj.Name}! Cybersecurity should give you peace of mind, not stress.";
+
+                default:
+                    return null;
+            }
+        }
 
 
 
