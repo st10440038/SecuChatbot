@@ -5,6 +5,8 @@ using System.Threading;
 using System.Media;
 using System.IO;
 using System.Reflection;
+using Microsoft.VisualBasic;
+using static ResponseHandler;
 
 
 
@@ -91,77 +93,99 @@ public class ResponseHandler
                 "Be cautious of emails asking for personal information. Scammers often disguise themselves as trusted organisations.",
                 "Always check the sender's email address carefully. Scammers often use fake email addresses that look similar to legitimate ones.",
                 "If an email contains urgent language asking for sensitive data, it could be a phishing attempt. Take a moment to think before clicking any links.",
-                "Never click on suspicious links or download attachments from unknown sources. These could be used to steal your personal data."
-            }
-            },
+                "Never click on suspicious links or download attachments from unknown sources. These could be used to steal your personal data.",
+                "Phishing scams often create a sense of urgency to trick users into reacting quickly without thinking. This emotional pressure is a common tactic used by attackers.",
+                "Phishers may create fake websites that look identical to real ones. Always double-check the web address before entering login credentials.",
+                "Even text messages (known as 'smishing') and phone calls (known as 'vishing') can be phishing attempts. It’s not just limited to email."
+            }},
             { ResponseCategories.Cybersecurity, new List<string>
             {
                 "Cybersecurity is all about protecting your digital life—your data, your devices, and your identity. It involves practices, tools, and technologies that keep your information safe from unauthorized access, damage, or attacks.",
                 "Always use strong, unique passwords for every account. Enable two-factor authentication where possible to add an extra layer of protection.",
-                "Stay up-to-date with the latest security patches. Cybercriminals often exploit vulnerabilities in outdated software to gain access to your system."
-            }
-            },
+                "Stay up-to-date with the latest security patches. Cybercriminals often exploit vulnerabilities in outdated software to gain access to your system.",
+                "Cybersecurity includes everything from protecting your Wi-Fi network to ensuring the apps on your phone are secure and updated.",
+                "Think of cybersecurity as digital hygiene—just like washing hands prevents illness, good cybersecurity habits prevent digital threats.",
+                "Human error is one of the biggest security risks. Staying informed and cautious is just as important as using technical tools."
+            }},
             { ResponseCategories.Passwords, new List<string>
             {
                 "Use a mix of uppercase, lowercase, numbers, and symbols in your passwords. The longer the password, the better—aim for at least 12 characters.",
                 "Never reuse passwords across different accounts. If one account is compromised, it can lead to others being hacked too.",
-                "Consider using a password manager to keep track of all your passwords securely. This way, you don’t need to remember each one."
-            }
-            },
+                "Consider using a password manager to keep track of all your passwords securely. This way, you don’t need to remember each one.",
+                "Avoid using personal information like names or birthdates in your passwords—they're easy to guess or find online.",
+                "A passphrase made up of random words (like 'GreenHorseBatteryRiver!') can be easier to remember and harder to crack.",
+                "Changing your passwords regularly helps reduce the chances of long-term unauthorized access if a password is compromised."
+            }},
             { ResponseCategories.TwoFA, new List<string>
             {
                 "Two-factor authentication (2FA) adds an extra layer of security by requiring something you know (your password) and something you have (a code sent to your phone).",
                 "When setting up 2FA, choose an authentication method that works for you, whether it’s a text message, app, or hardware key.",
-                "2FA significantly reduces the risk of your account being hacked, even if someone manages to steal your password."
-            }
-            },
+                "2FA significantly reduces the risk of your account being hacked, even if someone manages to steal your password.",
+                "2FA works like a double lock—if a hacker has your password, they’d still need the second factor to access your account.",
+                "Authenticator apps like Google Authenticator or Authy are more secure than SMS because text messages can be intercepted.",
+                "Using 2FA is one of the simplest ways to significantly improve your online security with minimal effort."
+            }},
             { ResponseCategories.SocialEngineering, new List<string>
             {
                 "Social engineering relies on manipulating people into divulging confidential information. Be cautious if someone pressures you for sensitive data.",
                 "Attackers may pose as trusted individuals—like IT support or a colleague—to trick you into sharing private information. Always verify their identity first.",
-                "Never respond to unsolicited emails or phone calls asking for personal information. Take your time to evaluate the situation."
-            }
-            },
+                "Never respond to unsolicited emails or phone calls asking for personal information. Take your time to evaluate the situation.",
+                "Social engineering isn't about hacking computers—it's about hacking people by exploiting trust, fear, or urgency.",
+                "Always question unusual requests, even if they come from someone you know. Their account may have been compromised.",
+                "Be alert for phrases like 'just this once' or 'don’t tell anyone'—these are common social engineering red flags."
+            }},
             { ResponseCategories.Malware, new List<string>
             {
                 "Malware is any software intentionally designed to cause damage. Viruses, ransomware, and spyware are all types of malware.",
                 "To protect against malware, keep your operating system and software up-to-date, use antivirus software, and avoid downloading files from untrusted sources.",
-                "If you suspect your device is infected with malware, run a full system scan with trusted antivirus software and disconnect from the internet to prevent further damage."
-            }
-            },
+                "If you suspect your device is infected with malware, run a full system scan with trusted antivirus software and disconnect from the internet to prevent further damage.",
+                "Malware can hide inside innocent-looking software or files. Always download apps from official sources only.",
+                "Some malware operates silently in the background, stealing data without obvious symptoms. Regular scans are important.",
+                "Ransomware is a type of malware that locks your files and demands payment to unlock them. Backups are your best defense."
+            }},
             { ResponseCategories.SafeBrowsing, new List<string>
             {
                 "Safe browsing is essential for protecting your personal data. Always make sure the website URL starts with 'https' (the 's' stands for secure).",
                 "Avoid clicking on pop-up ads or suspicious links, even if they appear to be from a reputable source. These could lead to harmful websites.",
-                "Use an ad blocker and privacy-focused browser extensions to minimize the risk of encountering malicious sites while browsing."
-            }
-            },
+                "Use an ad blocker and privacy-focused browser extensions to minimize the risk of encountering malicious sites while browsing.",
+                "Legitimate websites usually have clear, professional layouts and don’t flood your screen with pop-ups or spelling errors.",
+                "Look for security indicators like a padlock symbol in the address bar to confirm a site is encrypted.",
+                "If a site asks for personal information too soon or without reason, that’s a red flag. Leave the site immediately."
+            }},
             { ResponseCategories.DataPrivacy, new List<string>
             {
                 "Data privacy is about keeping your personal information safe. Be selective about the data you share online, and only provide necessary details to trusted services.",
                 "Make sure you're familiar with the privacy policies of the websites and apps you use. Understand what data they collect and how they protect it.",
-                "Consider using a VPN (Virtual Private Network) to encrypt your internet connection and protect your online privacy when using public networks."
-            }
-            },
+                "Consider using a VPN (Virtual Private Network) to encrypt your internet connection and protect your online privacy when using public networks.",
+                "Your digital footprint includes everything from search history to app permissions. Managing it protects your privacy.",
+                "Companies may collect more data than they need. Review app permissions and turn off those you don’t use.",
+                "Always log out of public or shared computers to prevent others from accessing your private information."
+            }},
             { ResponseCategories.SecureMessaging, new List<string>
             {
                 "Secure messaging ensures that only the intended recipient can read your messages. End-to-end encryption is a key feature of secure messaging apps like Signal and WhatsApp.",
                 "Consider using encrypted messaging services to safeguard sensitive information. These services use encryption algorithms to protect your messages from eavesdropping.",
-                "Whenever possible, avoid sending sensitive data over unsecured channels like SMS. Use secure, encrypted messaging apps instead."
-            }
-            },
+                "Whenever possible, avoid sending sensitive data over unsecured channels like SMS. Use secure, encrypted messaging apps instead.",
+                "End-to-end encryption means not even the service provider can read your messages. Only you and your recipient can.",
+                "Secure messaging is especially important for discussing financial, legal, or medical matters.",
+                "Some apps claim to be secure but don’t offer full encryption. Always check for end-to-end encryption in their features."
+            }},
             { ResponseCategories.Encryption, new List<string>
             {
                 "Encryption turns your data into an unreadable format, making it secure from unauthorized access. Only those with the decryption key can read it.",
                 "End-to-end encryption ensures that data is encrypted from the sender to the recipient, preventing anyone else from intercepting it during transit.",
-                "Encryption is used in many aspects of digital life, including securing emails, banking transactions, and messaging. It’s one of the best ways to protect sensitive information."
-            }
-            }
-
+                "Encryption is used in many aspects of digital life, including securing emails, banking transactions, and messaging. It’s one of the best ways to protect sensitive information.",
+                "Encryption is like sealing a message in a locked box. Even if someone intercepts it, they can’t read it without the key.",
+                "There are different types of encryption—symmetric (same key to encrypt and decrypt) and asymmetric (public/private key pairs).",
+                "Most websites use encryption through SSL/TLS, which protects your data during transmission. That’s what the 'https' in URLs means."
+            }}
         };
 
 
     }
+
+
+    
 
 
     // List of keywords that indicate confusion
@@ -302,14 +326,165 @@ public class ResponseHandler
     class Chatbot
     {
         private User userObj;
-        private ResponseHandler responseHandlerObj;
+        private ResponseHandler handlerObj;
 
 
         // Constructor to initialize User and ResponseHandler objects
         public Chatbot()
         {
             userObj = new User();  // User object to hold user details
-            responseHandlerObj = new ResponseHandler();  // ResponseHandler object to manage responses
+            handlerObj = new ResponseHandler();  // ResponseHandler object to manage responses
+        }
+
+
+
+        // Dictionary for interest-based tips
+        Dictionary<string, List<string>> interestTips = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase)
+        {
+            { ResponseCategories.DataPrivacy, new List<string>
+                {
+                    "review the security settings on your accounts.",
+                    "avoid oversharing personal information on social media.",
+                    "use privacy-focused browsers and search engines to reduce tracking.",
+                    "limit the personal information you share online.",
+                    "review privacy settings on apps and social platforms.",
+                    "use a VPN when browsing on public Wi-Fi."
+                }
+            },
+            { ResponseCategories.Phishing, new List<string>
+                {
+                    "learn how to identify fake links and suspicious attachments.",
+                    "verify the sender’s email address before clicking anything.",
+                    "not respond to urgent messages asking for personal info."
+                }
+            },
+            { ResponseCategories.Passwords, new List<string>
+                {
+                    "use long, unique passwords for every account.",
+                    "store passwords securely using a password manager.",
+                    "avoid including personal info in your passwords."
+                }
+            },
+            { ResponseCategories.Malware, new List<string>
+                {
+                    "avoid downloading files from unknown sources.",
+                    "keep your antivirus and system software updated.",
+                    "ignore pop-ups offering free virus scans or prizes."
+                }
+            },
+            { ResponseCategories.TwoFA, new List<string>
+                {
+                    "enable two-factor authentication on important accounts.",
+                    "use an authenticator app instead of SMS if possible.",
+                    "back up your 2FA codes in a secure location."
+                }
+            },
+            { ResponseCategories.SocialEngineering, new List<string>
+                {
+                    "stay cautious if someone pressures you for sensitive info.",
+                    "verify the identity of anyone requesting private information.",
+                    "don’t assume someone is legit just because they sound official."
+                }
+            },
+            { ResponseCategories.SafeBrowsing, new List<string>
+                {
+                    "check that websites use 'https' before entering personal data.",
+                    "use an ad blocker to prevent harmful pop-ups.",
+                    "avoid clicking random links from emails or messages."
+                }
+            },
+
+            { ResponseCategories.SecureMessaging, new List<string>
+                {
+                    "use apps that offer end-to-end encryption like Signal.",
+                    "avoid sending sensitive data over SMS.",
+                    "check if your messaging app stores messages in the cloud."
+                }
+            },
+            { ResponseCategories.Encryption, new List<string>
+                {
+                    "enable full-disk encryption on your devices.",
+                    "use encrypted email and cloud storage when possible.",
+                    "ensure sensitive data is encrypted during transfers."
+                }
+            },
+            { ResponseCategories.Scam, new List<string>
+                {
+                    "verify unexpected requests before sharing any details.",
+                    "be skeptical of offers that seem too good to be true.",
+                    "avoid giving personal data over unsolicited calls or emails."
+                }
+            }
+        };
+
+
+        // List of keywords (make sure they match your dictionary keys)
+        List<string> knownInterests = new List<string>
+        {
+            "phishing", "data privacy", "passwords", "malware", "2fa",
+            "social engineering", "safe browsing", "secure messaging",
+            "encryption", "scam"
+        };
+
+
+
+        string DetectInterestKeyword(string userInput)
+        {
+            foreach (string interest in knownInterests)
+            {
+                if (userInput.IndexOf(interest, StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    return interest; // return the matched keyword
+                }
+            }
+            return null;
+        }
+
+
+
+        // Method to show interest-based tips every 3 turns
+        void ShowInterestBasedTip(User user, int turn)
+        {
+            if (!string.IsNullOrEmpty(user.Interest) && turn % 3 == 0)
+            {
+                if (interestTips.TryGetValue(user.Interest, out List<string> tips) && tips.Count > 0)
+                {
+                    // Ensure the user has a tip history for this interest
+                    if (!user.ShownTipsByInterest.ContainsKey(user.Interest))
+                    {
+                        user.ShownTipsByInterest[user.Interest] = new HashSet<string>();
+                    }
+
+                    var shownTips = user.ShownTipsByInterest[user.Interest];
+                    var availableTips = tips.Where(t => !shownTips.Contains(t)).ToList();
+
+                    // Reset if all tips were already shown
+                    if (availableTips.Count == 0)
+                    {
+                        shownTips.Clear();
+                        availableTips = new List<string>(tips);
+                    }
+
+                    Random rnd = new Random();
+                    string randomTip = availableTips[rnd.Next(availableTips.Count)];
+                    shownTips.Add(randomTip); // Mark as shown
+
+                    string[] templates = new string[]
+                    {
+                        $"As someone interested in {user.Interest}, you might want to {{0}}",
+                        $"Since you're focused on {user.Interest}, consider this: {{0}}",
+                        $"Your interest in {user.Interest} is important. Here's a tip: {{0}}"
+                    };
+
+                    string selectedTemplate = templates[rnd.Next(templates.Length)];
+                    string finalTip = string.Format(selectedTemplate, randomTip);
+
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    TypeText("\n" + finalTip);
+                    Console.ResetColor();
+                    Console.WriteLine();
+                }
+            }
         }
 
 
@@ -413,13 +588,18 @@ public class ResponseHandler
                 Console.WriteLine();
 
 
-                ResponseHandler handlerObj = new ResponseHandler();
                 string currentTopic = "";
+
+
+                int conversationTurn = 0;
 
 
                 // Start the conversation loop
                 while (true)
                 {
+
+                    conversationTurn++;
+
                     Console.Write("----------> ");
                     Console.ForegroundColor = ConsoleColor.Green;
                     string? userInput = Console.ReadLine()?.ToLower();  // Get user input
@@ -447,6 +627,37 @@ public class ResponseHandler
                     }
 
 
+                    if (userInput.ToLower().StartsWith("i'm interested in "))
+                    {
+                        string interest = userInput.Substring("i'm interested in ".Length).Trim();
+                        // Check if the user mentioned an interest
+                        string detectedInterest = DetectInterestKeyword(userInput);
+                        if (!string.IsNullOrEmpty(detectedInterest))
+                        {
+                            userObj.Interest = detectedInterest;
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.WriteLine($"Great! I'll remember that you're interested in {detectedInterest}.");
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            TypeText("SecuBot: Could you repeat that? I didn't catch the topic you're interested in.");
+                            Console.ResetColor();
+                            Console.WriteLine();
+                            Console.WriteLine("---------------------------------------------------------------------");
+                        }
+
+                        // Ask if the user has more questions
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        TypeText($"\nWould you like more information on any specific topic {userObj.Name}, or do you have any further questions?");
+                        Console.ResetColor();
+                        Console.WriteLine();
+                        continue;
+
+                    }
+
+
 
                     string botReply = handlerObj.GetBotResponse(userInput);
                     Console.ForegroundColor = ConsoleColor.Cyan;
@@ -456,12 +667,16 @@ public class ResponseHandler
                     Console.WriteLine("---------------------------------------------------------------------");
 
 
+                    // Show interest-based tip every 3 turns
+                    ShowInterestBasedTip(userObj, conversationTurn);
+
 
                     // Ask if the user has more questions
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     TypeText($"\nWould you like more information on any specific topic {userObj.Name}, or do you have any further questions?");
                     Console.ResetColor();
                     Console.WriteLine();
+
                 }
             }
 
@@ -472,6 +687,11 @@ public class ResponseHandler
                 Console.ResetColor();
             }
         }
+
+
+
+        
+
 
 
 
@@ -510,7 +730,6 @@ public class ResponseHandler
             }
 
             return userName;
-
         }
 
 
@@ -532,7 +751,12 @@ public class ResponseHandler
     // User class to hold the user's data (The user's name for now)
     public class User
     {
-        public string? Name { get; set; }
+        public string Name { get; set; }
+        public string Interest { get; set; }
+
+
+        // Tracks shown tips by interest
+        public Dictionary<string, HashSet<string>> ShownTipsByInterest { get; set; } = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
     }
 }
 
