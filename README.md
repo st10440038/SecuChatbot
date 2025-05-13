@@ -1,98 +1,146 @@
 # SecuBot: Cybersecurity Chatbot
 
-**SecuBot** is a professional, command-line chatbot that helps users understand and improve their cybersecurity knowledge. It gives quick, helpful advices about staying safe online, like how to manage passwords, recognize phishing attempts, and more.
+**SecuBot** is a professional, command-line chatbot that helps users understand and improve their cybersecurity knowledge. It gives quick, helpful advice about staying safe online, like how to manage passwords, recognize phishing attempts, and more.
 
+---
 
 ## Features
-***Cybersecurity Help:*** Ask the bot anything about digital security, and it’ll give an advice on everything from securing an account to spotting online threats.
 
-***Interactive Experience:*** SecuBot responds to the user's questions in a conversational way, making learning about cybersecurity a little more interesting.
+### 💻 Cybersecurity Help
+Ask the bot anything about digital security, and it’ll give advice on everything from securing an account to spotting online threats.
 
-***ASCII Art:*** Every time the user starts the bot, a customized ASCII art appears.
+### 💬 Interactive Experience
+SecuBot responds in a conversational way, making learning about cybersecurity more engaging.
 
-***Voice Greeting:*** To make the interaction more immersive, SecuBot plays a short welcome audio message when launched.
+### 🎨 ASCII Art
+Every time the user starts the bot, a customized ASCII art appears.
 
-***User-friendly Interaction:*** Ask questions, and SecuBot will reply with advice based on what the user said.
+### 🔊 Voice Greeting
+To make the interaction more immersive, SecuBot plays a short welcome audio message when launched.
 
+### 🧠 Random Responses
+For topics like phishing, SecuBot selects from a variety of predefined responses to keep the conversation fresh and informative.
+
+### 🔄 Conversation Flow
+SecuBot can handle follow-up questions smoothly, maintaining the context of a conversation instead of resetting after every response.
+
+### 📝 Memory and Recall
+SecuBot remembers user preferences (like their name or favorite cybersecurity topic) and refers back to them for more personalized interactions.
+
+### 😊 Sentiment Detection
+Detects basic emotions such as worry or curiosity and adjusts responses to be more supportive and empathetic.
+
+---
 
 ## Technologies Used
-***C#:*** The chatbot is written in C# using basic console functionalities.
 
-***Dictionary-based Responses:*** SecuBot looks for certain words or phrases the user type and responds with relevant info.
+- **C#**: The chatbot is written in C# using basic console functionalities.
+- **Dictionary-based Responses**: Recognizes keywords and maps them to relevant advice.
+- **Randomized Reply Lists**: Provides varied responses using arrays/lists for certain topics.
+- **Thread.Sleep**: Creates a typing effect in the chatbot’s responses.
+- **System.Media.SoundPlayer**: Plays a welcome audio clip upon startup.
 
-***Thread.Sleep for Typing Effect:*** Adds a "typing" effect to the chatbot's responses for a more interactive experience.
-
-***System.Media.SoundPlayer:*** Plays a welcome audio clip upon startup.
-
+---
 
 ## Steps for Installation & Usage
-Clone this repository to your local machine: **git clone https://github.com/st10440038/SecuChatbot.git**
 
-Open the project in your IDE or editor like *Visual Studio* or *Visual Studio Code*.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/st10440038/SecuChatbot.git
+2. Open the project in your IDE (e.g., Visual Studio or Visual Studio Code).
 
-Build the solution and run the program.
+3. Build and run the program.
 
+---
 
-## How It Works:
-***Main Program:*** This starts by displaying a welcome banner, playing an audio greeting, and initializing the chatbot.
+## How It Works
+**Main Program:** Displays a welcome banner, plays audio, and starts the chatbot.
 
-***Response Handling:*** The ResponseHandler class contains the logic to categorize user input (e.g., questions about "passwords," "cybersecurity," etc.) and provides relevant responses.
+**Response Handling:** The ResponseHandler class identifies keywords/topics and selects appropriate advice.
 
-***User Input Handling:*** The program continuously listens for user input, matches it with predefined responses, and asks the user if they have more questions after each response.
+**Random Tips:** For key topics like phishing, responses are randomly selected from a list to keep conversations dynamic.
 
-***Exit Logic:*** The chatbot will end the conversation gracefully when the user types exit-related commands.
+**Memory:** The chatbot remembers and recalls user-provided details to personalize responses.
 
+**Sentiment:** Simple emotional cues like “worried” or “confused” trigger empathetic responses.
+
+**Exit Logic:** The chatbot gracefully ends when a user types exit-related commands.
+
+---
 
 ## How to Use
-Once the chatbot is running, the user only has to ask a question about the topic wanted.
-Some examples of all the topics users can ask SecuBot about:
+Once running, just ask a question about cybersecurity.
 
-- ***Cybersecurity*** (general information about online security)
+Topics include:
 
-- ***Passwords*** (tips on creating strong passwords and password management)
+- Cybersecurity (general online safety)
 
-- ***Phishing*** (how to recognize and avoid phishing attacks)
+- Passwords (creating strong ones and managing them)
 
-- ***Two-factor Authentication (2FA)*** (how to set up and why it's important)
+- Phishing (identifying and avoiding phishing attacks)
 
-- ***Social Engineering*** (how attackers trick people into giving sensitive information)
+- Two-Factor Authentication (2FA)
 
-- ***Malware*** (viruses, trojans, spyware, and how to avoid them)
+- Social Engineering
 
-- ***Safe Browsing*** (how to browse the internet securely)
+- Malware
 
-- ***Data Privacy*** (how to protect personal information online)
+- Safe Browsing
 
-- ***Secure Messaging*** (using encrypted messaging apps for privacy)
+- Data Privacy
 
-- ***Encryption*** (how encryption works to protect data)
+- Secure Messaging
 
-When chatting with SecuBot, ask questions about cybersecurity and the bot will respond based on pre-programmed responses.
+- Encryption
 
+---
 
-## Exiting the Chatbot with the console
-To exit the chatbot, the user only has to type any of the following:
+## Example Interactions
 
-- "exit"
+**User:** What is phishing?
 
-- "bye"
+**SecuBot:** Phishing is a tricky scam where attackers pretend to be someone you trust, like your bank or a coworker... (randomly chosen tip)
 
-- "quit"
+**User:** I'm interested in privacy.
 
+**SecuBot:** Great! I'll remember that you're interested in privacy. It's a crucial part of staying safe online.
 
-## Example Output
+**User:** I'm worried about online scams.
+
+**SecuBot:** It's completely understandable to feel that way. Scammers can be very convincing. Let me share some tips...
+
+---
+
+## Exiting the Chatbot
+Type any of the following to end the conversation:
+
+- exit
+
+- bye
+
+- quit
+
+---
+
+ ## Example Output
 (Playing welcome audio...)
 
-Welcome to the Cybersecurity Chatbot!
 
+Welcome to the Cybersecurity Chatbot!
 Type 'exit' or 'bye' anytime to end the conversation.
 
-SecuBot: Hello, I’m SecuBot, here to assist you with all things cybersecurity.
+**SecuBot:** Hello, I’m SecuBot, here to assist you with all things cybersecurity.
 
-SecuBot: What can I help you with today?
+**SecuBot:** What can I help you with today?
 
-----------> What is phishing?
+**User:** What is phishing?
 
-SecuBot: Phishing is a tricky scam where attackers pretend to be someone you trust, like your bank or a coworker, to steal sensitive information. Be wary of unsolicited emails or messages that ask you to click on links or open attachments. Always verify the source before taking any action.
+**SecuBot:** Be cautious of emails asking for personal information. Scammers often disguise themselves as trusted organizations.
 
-Would you like more information on any specific topic, or do you have any further questions?
+**User:** I'm worried about online scams.
+
+**SecuBot:** It's completely normal to feel concerned. Let me help you feel more confident about staying safe online.
+
+
+Stay safe, stay informed — with SecuBot! 🔐
+
