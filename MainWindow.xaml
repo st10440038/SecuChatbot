@@ -1,0 +1,142 @@
+﻿<Window x:Class="SecuBot.GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SecuBot.GUI"
+        mc:Ignorable="d"
+        Title="SecuBot - Cybersecurity Chatbot"
+        Height="500"
+        Width="1000"
+        Background="#F0F2F5"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160"/>
+            <!-- Sidebar -->
+            <ColumnDefinition Width="*"/>
+            <!-- Main content -->
+        </Grid.ColumnDefinitions>
+
+        <!-- 🚀 SIDEBAR inside Border to allow Padding -->
+        <Border Background="#2C3E50" Grid.Column="0" Padding="10">
+            <StackPanel>
+                <TextBlock Text="🔐 SecuBot"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           Margin="0 0 0 20"/>
+
+
+                <Button Content="📝 Task Manager"
+                        Click="OpenTaskManager_Click"
+                        Margin="0 5"
+                        Height="40"
+                        Background="#007ACC"
+                        Foreground="White"
+                        BorderBrush="Transparent"/>
+            </StackPanel>
+        </Border>
+
+        <!-- 🏠 MAIN CONTENT (Home Welcome Panel & Frame) -->
+        <Grid Grid.Column="1">
+            <!-- 🎉 Welcome Panel inside Border -->
+            <Border Background="White"
+                    CornerRadius="20"
+                    Padding="30"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="777"
+                    x:Name="WelcomeCard">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black"
+                                      Opacity="0.2"
+                                      BlurRadius="10"
+                                      ShadowDepth="4"/>
+                </Border.Effect>
+
+                <StackPanel x:Name="WelcomePanel"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="🛡️ Welcome to SecuBot, Your favorite chatbot!"
+                               FontSize="30"
+                               FontWeight="Bold"
+                               TextAlignment="Center"
+                               Foreground="#2D2D2D"
+                               Margin="0 0 0 10"
+                               Width="714"
+                               Height="54"/>
+
+                    <TextBlock TextWrapping="Wrap"
+           TextAlignment="Center"
+           FontSize="16"
+           Foreground="#444"
+           Margin="0 10 0 30" Width="645">
+    Hello and welcome to SecuBot, your smart and friendly cybersecurity companion! 
+    Whether you're a beginner or just brushing up on your cyber smarts, you're in the right place. 
+    🔐 Get ready to explore how to stay safe online, spot scams, and protect your digital life, all in a fun and interactive way!
+                    </TextBlock>
+
+                    <Button Content="▶ Start the Chat"
+                            Width="200"
+                            Height="50"
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            Background="#FF6A00"
+                            BorderBrush="{x:Null}"
+                            Cursor="Hand"
+                            Click="Chat_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#FF6A00"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                    CornerRadius="8"
+                                                    Padding="10">
+                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                  VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF8500"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+            </Border>
+
+            <!-- 🔽 Footer -->
+            <StackPanel VerticalAlignment="Bottom"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,0,20">
+                <TextBlock Text="© 2023 SecuBot. All rights reserved."
+                           FontSize="12"
+                           Foreground="#888"
+                           TextAlignment="Center"/>
+                <TextBlock Text="Made with ❤️ by SecuBot Team"
+                           FontSize="12"
+                           Foreground="#888"
+                           TextAlignment="Center"/>
+            </StackPanel>
+
+            <!-- 📄 Main Content Frame -->
+            <Frame x:Name="MainFrame"
+                   NavigationUIVisibility="Hidden"
+                   Visibility="Collapsed"
+                   Background="White"
+                   Margin="20"/>
+        </Grid>
+    </Grid>
+</Window>
+
+
