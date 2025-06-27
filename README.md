@@ -1,146 +1,173 @@
-# SecuBot: Cybersecurity Chatbot
+# 🛡️ SecuBot: Cybersecurity Chatbot
 
-**SecuBot** is a professional, command-line chatbot that helps users understand and improve their cybersecurity knowledge. It gives quick, helpful advice about staying safe online, like how to manage passwords, recognize phishing attempts, and more.
-
----
-
-## Features
-
-### 💻 Cybersecurity Help
-Ask the bot anything about digital security, and it’ll give advice on everything from securing an account to spotting online threats.
-
-### 💬 Interactive Experience
-SecuBot responds in a conversational way, making learning about cybersecurity more engaging.
-
-### 🎨 ASCII Art
-Every time the user starts the bot, a customized ASCII art appears.
-
-### 🔊 Voice Greeting
-To make the interaction more immersive, SecuBot plays a short welcome audio message when launched.
-
-### 🧠 Random Responses
-For topics like phishing, SecuBot selects from a variety of predefined responses to keep the conversation fresh and informative.
-
-### 🔄 Conversation Flow
-SecuBot can handle follow-up questions smoothly, maintaining the context of a conversation instead of resetting after every response.
-
-### 📝 Memory and Recall
-SecuBot remembers user preferences (like their name or favorite cybersecurity topic) and refers back to them for more personalized interactions.
-
-### 😊 Sentiment Detection
-Detects basic emotions such as worry or curiosity and adjusts responses to be more supportive and empathetic.
+**SecuBot** is a smart, interactive chatbot designed to help users improve their cybersecurity knowledge and digital habits. It combines a friendly chat experience with educational tools such as quizzes, reminders, and sentiment-aware conversations.
 
 ---
 
-## Technologies Used
+## 🚀 What's New?
 
-- **C#**: The chatbot is written in C# using basic console functionalities.
-- **Dictionary-based Responses**: Recognizes keywords and maps them to relevant advice.
-- **Randomized Reply Lists**: Provides varied responses using arrays/lists for certain topics.
-- **Thread.Sleep**: Creates a typing effect in the chatbot’s responses.
-- **System.Media.SoundPlayer**: Plays a welcome audio clip upon startup.
+### ✅ GUI Version (WPF)
+SecuBot now features a **Graphical User Interface** built using WPF for a more engaging and user-friendly experience.
+
+### ✅ 🧠 Improved NLP (Natural Language Processing)
+SecuBot understands flexible input like:
+- "Can I take the quiz?"
+- "Remind me in 3 days to check my email settings"
+- "What's phishing?"
+
+### ✅ 🎮 Quiz Game
+Test your cybersecurity knowledge with a built-in **10-question multiple choice quiz**. Score is tracked, and personalized feedback is given.
+
+### ✅ 📋 Task Assistant
+Add, view, and manage security-related tasks:
+- Tasks include title, description, and optional reminders.
+- View your task list in the chat or in a dedicated management page.
+- Mark tasks as completed ✅ or delete them.
+
+### ✅ ⏰ Reminder System
+Set reminders in natural language:
+- “Remind me in 5 days”
+- “Set a reminder on July 1”
+- “Next week”
+
+### ✅ 🧾 Activity Log
+SecuBot remembers your recent activities and can display a log of actions you've taken (e.g., started quiz, added tasks).
+
+### ✅ 😊 Sentiment Detection
+Understands emotional cues like:
+- “I'm confused”
+- “This is frustrating”
+- “I'm worried about scams”
+
+…and responds empathetically.
+
+### ✅ 🎵 Voice Greeting
+Plays a friendly **audio welcome message** when the app starts.
+
+### ✅ 🔄 Memory
+SecuBot remembers your **name**, **interests**, and preferences throughout your session.
 
 ---
 
-## Steps for Installation & Usage
+## ✨ Core Features
 
-1. Clone the repository:
+- **Cybersecurity Guidance** – Get helpful responses on phishing, passwords, 2FA, scams, malware, and more.
+- **Personalization** – SecuBot remembers your name and preferred topics.
+- **Randomized Replies** – For key topics like phishing, SecuBot provides randomized advice to keep conversations engaging.
+- **Typing Delay** – Simulates realistic typing delays for a more human feel.
+- **ASCII Art** – Console version includes a custom ASCII banner at startup.
+
+---
+
+## 🧪 Technologies Used
+
+- **C# (.NET)** – Core language for logic
+- **WPF (XAML)** – Modern GUI using Windows Presentation Foundation
+- **Regex** – For parsing time and reminder phrases
+- **SoundPlayer** – For audio greeting playback
+- **List & Dictionary** – For dynamic memory and responses
+- **LINQ & Binding** – To bind task data in the GUI
+- **INotifyPropertyChanged** – To reflect task updates in real-time
+
+---
+
+## 🛠️ Installation & Setup
+
+1. Clone this repository:
+
    ```bash
    git clone https://github.com/st10440038/SecuChatbot.git
-2. Open the project in your IDE (e.g., Visual Studio or Visual Studio Code).
+2. Open the project in Visual Studio.
 
-3. Build and run the program.
+3. Build the solution and run the WPF application.
 
----
+4. Ensure the file audioWelcomeChatbot.wav is present in the /bin/Debug/ folder.
 
-## How It Works
-**Main Program:** Displays a welcome banner, plays audio, and starts the chatbot.
+   Right-click → Properties → Set Copy to Output Directory = Copy if newer
 
-**Response Handling:** The ResponseHandler class identifies keywords/topics and selects appropriate advice.
+##🧠 How to Use SecuBot
+Once running, just type naturally into the chatbot. SecuBot understands sentences like:
 
-**Random Tips:** For key topics like phishing, responses are randomly selected from a list to keep conversations dynamic.
+“Remind me in 3 days to update antivirus”
 
-**Memory:** The chatbot remembers and recalls user-provided details to personalize responses.
+“What’s my task list?”
 
-**Sentiment:** Simple emotional cues like “worried” or “confused” trigger empathetic responses.
+“I’m feeling confused about phishing”
 
-**Exit Logic:** The chatbot gracefully ends when a user types exit-related commands.
+“Start the quiz”
 
----
+“Add task – enable 2FA”
 
-## How to Use
-Once running, just ask a question about cybersecurity.
+“Show activity log”
 
-Topics include:
+##💬 Example Interactions
+User: Remind me in 5 days to check my firewall
+SecuBot: Got it! I'll remind you on [date]
 
-- Cybersecurity (general online safety)
+User: Can we start the game?
+SecuBot: Starting the quiz. Good luck!
 
-- Passwords (creating strong ones and managing them)
+User: What have I done so far?
+SecuBot: Here's your recent activity:
 
-- Phishing (identifying and avoiding phishing attacks)
+[time] Quiz started
 
-- Two-Factor Authentication (2FA)
+[time] Task added: Update antivirus
 
-- Social Engineering
+##✅ Exiting
+To exit the console version of SecuBot, type any of the following:
 
-- Malware
+exit
 
-- Safe Browsing
+quit
 
-- Data Privacy
+bye
 
-- Secure Messaging
+(Note: WPF version includes built-in navigation without command-line exit.)
 
-- Encryption
+##📁 Folder Contents
 
----
+SecuBot/
+├── audioWelcomeChatbot.wav       # Audio greeting
+├── MainWindow.xaml               # Home/start page
+├── Page1.xaml                    # Chatbot interface
+├── Page2.xaml                    # Task manager
+├── Page4.xaml                    # Quiz game
+├── Page5.xaml                    # Quiz result screen
+├── TaskItem.cs                   # Task data model
+├── TaskManager.cs                # Task handling logic
+├── ResponseHandler.cs            # Core chatbot logic
+└── README.md                     # This file
 
-## Example Interactions
+##💡 Future Ideas
+🧠 Save/load memory and tasks across sessions
 
-**User:** What is phishing?
+🕶️ Themed UI (dark mode/light mode toggle)
 
-**SecuBot:** Phishing is a tricky scam where attackers pretend to be someone you trust, like your bank or a coworker... (randomly chosen tip)
+⏰ Desktop reminders or notifications
 
-**User:** I'm interested in privacy.
+🌐 Web version (Blazor / ASP.NET)
 
-**SecuBot:** Great! I'll remember that you're interested in privacy. It's a crucial part of staying safe online.
+📊 User statistics & quiz leaderboards
 
-**User:** I'm worried about online scams.
-
-**SecuBot:** It's completely understandable to feel that way. Scammers can be very convincing. Let me share some tips...
-
----
-
-## Exiting the Chatbot
-Type any of the following to end the conversation:
-
-- exit
-
-- bye
-
-- quit
-
----
-
- ## Example Output
-(Playing welcome audio...)
+🔗 Export activity log as a text file
 
 
-Welcome to the Cybersecurity Chatbot!
-Type 'exit' or 'bye' anytime to end the conversation.
+##👨‍💻 Contributing
+Want to contribute? Here's how:
 
-**SecuBot:** Hello, I’m SecuBot, here to assist you with all things cybersecurity.
+Fork the repository
 
-**SecuBot:** What can I help you with today?
+Create a new branch (git checkout -b feature-X)
 
-**User:** What is phishing?
+Commit your changes
 
-**SecuBot:** Be cautious of emails asking for personal information. Scammers often disguise themselves as trusted organizations.
+Push to your fork and open a pull request
 
-**User:** I'm worried about online scams.
+🔐 License
+This project is licensed under the MIT License for academic/educational use.
 
-**SecuBot:** It's completely normal to feel concerned. Let me help you feel more confident about staying safe online.
+🧩 Credits
+Developed by ST10440038 for the PROG6221 Practical POE.
 
-
-Stay safe, stay informed — with SecuBot! 🔐
-
+“Stay safe, stay informed — with SecuBot!” 🔐
